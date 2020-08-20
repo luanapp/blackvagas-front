@@ -17,8 +17,12 @@ const Layout = ({ children, routes }) => (
 );
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   routes: PropTypes.array.isRequired,
+};
+
+Layout.defaultProps = {
+  children: null,
 };
 
 export default Layout;

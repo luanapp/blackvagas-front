@@ -16,28 +16,14 @@ const theme = createMuiTheme({
     primary: {
       main: '#343434',
     },
-    text: {
-      secondary: {
-        main: '#ff3366',
-      },
-      warning: {
-        main: '#ffc071',
-      },
-      error: {
-        xLight: red[50],
-        main: red[500],
-        dark: red[700],
-      },
-      success: {
-        xLight: green[50],
-        main: green[500],
-        dark: green[700],
-      },
+    secondary: {
+      main: '#ffffff',
     },
     background: {
-      default: green[200],
-      placeholder: grey[200],
-      paper: green[500],
+      default: '#f2d071',
+    },
+    text: {
+      primary: '#cacaca',
     },
   },
   typography: {
