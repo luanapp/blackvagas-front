@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { filter } from 'ramda';
-import { Button, ButtonGroup, Hidden } from '@material-ui/core';
+import { Button, ButtonGroup, Hidden, Typography } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { useLocation, NavLink } from 'react-router-dom';
@@ -38,7 +38,7 @@ const HorizontalMenu = ({ routes }) => {
   return (
     <Hidden xsDown>
       <Button color="inherit" to="/" component={NavLink}>
-        BlackVagas
+        <Typography variant="h5">BlackVagas</Typography>
       </Button>
       <ButtonGroup
         variant="text"

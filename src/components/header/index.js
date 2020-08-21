@@ -54,9 +54,9 @@ const Header = ({ routes }) => {
 Header.propTypes = {
   routes: PropTypes.arrayOf(
     PropTypes.shape({
+      order: PropTypes.number.isRequired,
       path: PropTypes.string.isRequired,
       label: PropTypes.string,
-      order: PropTypes.number.isRequired,
     })
   ).isRequired,
 };
