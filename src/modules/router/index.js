@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -12,9 +12,11 @@ const RouterConfig = ({ routes, layout: Layout }) => (
           path={route.path}
           exact={!!route.exact}
           render={(props) => (
-            <Layout {...props} routes={routes}>
-              <route.component {...props} routes={route.routes} />
-            </Layout>
+            <Suspense fallback="loading">
+              <Layout {...props} routes={routes}>
+                <route.component {...props} routes={route.routes} />
+              </Layout>
+            </Suspense>
           )}
         />
       ))}

@@ -7,10 +7,13 @@ import {
   ButtonGroup,
   Hidden,
   Drawer,
+  Typography,
 } from '@material-ui/core';
 import { Close as CloseIcon } from '@material-ui/icons';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
+import { useTranslation } from 'react-i18next';
+import { useLocation, NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   grid: {
@@ -37,12 +40,20 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 'auto',
     marginLeft: 0,
   },
+  selectedButton: {
+    color: theme.palette.background.default,
+  },
 }));
 
 const VerticalMenu = ({ routes, handleClose, open }) => {
+  const { t } = useTranslation(['routes']);
   const classes = useStyles();
   const theme = useTheme();
+  const location = useLocation();
 
+  const buttonColor = (path) => {
+    return location.pathname === path ? classes.selectedButton : null;
+  };
   const isVisible = (route) => !!route.visible;
   const visibleRoutes = filter(isVisible, routes);
 
@@ -55,8 +66,13 @@ const VerticalMenu = ({ routes, handleClose, open }) => {
         aria-label="vertical outlined primary button group"
       >
         {visibleRoutes.map(({ path, label, order }) => (
-          <Button to={path} key={order}>
-            {label}
+          <Button
+            to={path}
+            key={order}
+            component={NavLink}
+            classes={{ label: buttonColor(path) }}
+          >
+            {t(label)}
           </Button>
         ))}
       </ButtonGroup>
@@ -81,6 +97,9 @@ const VerticalMenu = ({ routes, handleClose, open }) => {
           <IconButton onClick={handleClose} className={classes.closeMenuButton}>
             <CloseIcon />
           </IconButton>
+          <Button color="inherit" to="/" component={NavLink}>
+            <Typography variant="h5">BlackVagas</Typography>
+          </Button>
           {drawerContent}
         </Drawer>
       </Hidden>

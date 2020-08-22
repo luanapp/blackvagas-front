@@ -12,7 +12,7 @@ const routes = [
   {
     order: 1,
     path: '/login',
-    label: 'Entrar',
+    label: 'enter',
     exact: true,
     component: App,
     visible: true,
@@ -20,19 +20,19 @@ const routes = [
   {
     order: 2,
     path: '/register',
-    label: 'Cadastrar',
+    label: 'register',
     exact: true,
     component: App,
     visible: true,
     routes: [
       {
         path: '/find',
-        label: 'Encontrar',
+        label: 'find',
         component: App,
       },
       {
         path: '/new',
-        label: 'Novo',
+        label: 'new',
         component: App,
       },
     ],
@@ -40,7 +40,7 @@ const routes = [
   {
     order: 3,
     path: '/jobs',
-    label: 'Vagas',
+    label: 'jobs-vacancies',
     exact: true,
     component: App,
     visible: true,
@@ -48,7 +48,7 @@ const routes = [
   {
     order: 4,
     path: '/companies',
-    label: 'Para Empresas',
+    label: 'for-companies',
     exact: true,
     component: App,
     visible: true,

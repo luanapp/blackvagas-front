@@ -4,6 +4,7 @@ import Layout from './modules/layout';
 import * as serviceWorker from './serviceWorker';
 import RouterConfig from './modules/router';
 import routes from './routes';
+import './i18n';
 
 ReactDOM.render(
   <RouterConfig routes={routes} layout={Layout} />,

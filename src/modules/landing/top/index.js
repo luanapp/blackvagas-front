@@ -1,13 +1,7 @@
 import React from 'react';
-import {
-  Grid,
-  Typography,
-  Card,
-  CardMedia,
-  CardContent,
-  Button,
-} from '@material-ui/core';
+import { Grid, Typography, Card, CardMedia, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { useTranslation } from 'react-i18next';
 import people from './images/people.png';
 
 const useStyles = makeStyles(() => ({
@@ -34,6 +28,7 @@ const useStyles = makeStyles(() => ({
 
 const Top = () => {
   const classes = useStyles();
+  const { t } = useTranslation(['landing']);
 
   return (
     <div className={classes.root}>
@@ -47,7 +42,7 @@ const Top = () => {
             className={classes.textContainer}
           >
             <Typography p={5} color="textSecondary" variant="h2">
-              Você está na vitrine profissional da comunidade negra
+              {t('top.main-text')}
             </Typography>
           </Grid>
           <Grid
@@ -58,7 +53,7 @@ const Top = () => {
             className={classes.buttonContainer}
           >
             <Button color="primary" variant="contained">
-              Encontrar Vagas
+              {t('top.find-vacant-jobs')}
             </Button>
           </Grid>
         </Grid>

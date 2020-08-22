@@ -5,6 +5,7 @@ import { Button, ButtonGroup, Hidden, Typography } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { useLocation, NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
   grid: {
@@ -28,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 const HorizontalMenu = ({ routes }) => {
   const classes = useStyles();
   const location = useLocation();
+  const { t } = useTranslation(['routes']);
 
   const isVisible = (route) => !!route.visible;
   const visibleRoutes = filter(isVisible, routes);
@@ -56,7 +58,7 @@ const HorizontalMenu = ({ routes }) => {
               label: buttonColor(path),
             }}
           >
-            {label}
+            {t(label)}
           </Button>
         ))}
       </ButtonGroup>
