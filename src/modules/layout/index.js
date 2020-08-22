@@ -1,8 +1,8 @@
 import React from 'react';
 import { ThemeProvider, CssBaseline } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import Header from '../../components/header';
-import Footer from '../../components/footer';
+import Header from '../header';
+import Footer from '../footer';
 import theme from '../../theme';
 
 const Layout = ({ children, routes }) => (
@@ -10,7 +10,7 @@ const Layout = ({ children, routes }) => (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header routes={routes} />
-      {children}
+      <div id="content">{children}</div>
       <Footer />
     </ThemeProvider>
   </React.StrictMode>

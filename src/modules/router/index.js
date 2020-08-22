@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-const RouterConfig = ({ routes, children }) => (
+const RouterConfig = ({ routes, layout: Layout }) => (
   <Router>
     <Switch>
       {routes.map((route, i) => (
@@ -10,14 +12,19 @@ const RouterConfig = ({ routes, children }) => (
           path={route.path}
           exact={!!route.exact}
           render={(props) => (
-            <route.component {...props} routes={route.routes} />
+            <Layout {...props} routes={routes}>
+              <route.component {...props} routes={route.routes} />
+            </Layout>
           )}
         />
       ))}
     </Switch>
-
-    {children}
   </Router>
 );
+
+RouterConfig.propTypes = {
+  layout: PropTypes.any.isRequired,
+  routes: PropTypes.array.isRequired,
+};
 
 export default RouterConfig;

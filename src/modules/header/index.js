@@ -26,7 +26,7 @@ const Header = ({ routes }) => {
 
   return (
     <nav>
-      <AppBar className={classes.appBar} variant="outlined">
+      <AppBar position="sticky" className={classes.appBar} variant="outlined">
         <Toolbar>
           <Hidden smUp>
             <IconButton

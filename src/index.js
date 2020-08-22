@@ -6,9 +6,7 @@ import RouterConfig from './modules/router';
 import routes from './routes';
 
 ReactDOM.render(
-  <RouterConfig routes={routes}>
-    <Layout routes={routes} />
-  </RouterConfig>,
+  <RouterConfig routes={routes} layout={Layout} />,
   document.getElementById('root')
 );
 

@@ -1,6 +1,6 @@
 import { green, grey, red } from '@material-ui/core/colors';
 
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
 const typography = {
   fontFamily: 'Work Sans, sans-serif',
@@ -12,6 +12,20 @@ const typography = {
 };
 
 const theme = createMuiTheme({
+  overrides: {
+    MuiButton: {
+      root: {
+        paddingBottom: 10,
+        paddingTop: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
+      },
+      containedPrimary: {
+        color: '#f2d071',
+      },
+    },
+  },
+
   palette: {
     primary: {
       main: '#343434',
@@ -24,16 +38,13 @@ const theme = createMuiTheme({
     },
     text: {
       primary: '#cacaca',
+      secondary: '#343434',
     },
   },
   typography: {
-    fontFamily: 'Work Sans, sans-serif',
-    fontSize: 16,
-    fontWeightLight: 300, // Work Sans
-    fontWeightRegular: 400, // Work Sans
-    fontWeightMedium: 700, // Roboto Condensed
-    fontFamilySecondary: 'Roboto Condensed, sans-serif',
+    ...typography,
     button: {
+      fontSize: 16,
       textTransform: 'capitalize',
       color: '#ff3366',
     },
@@ -70,4 +81,6 @@ const theme = createMuiTheme({
   },
 });
 
-export default theme;
+export default responsiveFontSizes(theme, {
+  breakpoints: ['xs', 'sm', 'md', 'lg'],
+});

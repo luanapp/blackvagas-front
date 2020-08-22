@@ -1,10 +1,11 @@
 import App from './App';
+import Landing from './modules/landing';
 
 const routes = [
   {
     order: 0,
     path: '/',
-    component: App,
+    component: Landing,
     exact: true,
     visible: false,
   },
