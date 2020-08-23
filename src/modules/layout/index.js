@@ -11,7 +11,7 @@ const Layout = ({ children, routes }) => (
       <CssBaseline />
       <Header routes={routes} />
       <div id="content">{children}</div>
-      <Footer />
+      <Footer routes={routes} />
     </ThemeProvider>
   </React.StrictMode>
 );
