@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Social from './social';
 import Menu from './menu';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     color: theme.palette.background.default,
@@ -39,11 +39,7 @@ const Footer = () => {
           <Social sm={4} xs={12} />
         </Grid>
         <Grid container item sm={12} xs={12}>
-          <Typography
-            color="initial"
-            variant="body1"
-            className={classes.copyright}
-          >
+          <Typography color="initial" variant="body1" className={classes.copyright}>
             Copyright © 2008-2020, BlackVagas, Inc.
           </Typography>
         </Grid>

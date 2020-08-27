@@ -23,7 +23,7 @@
         "ignoreCase": false
       }
     ],
-    "react/prop-types": "off",
+    "react/prop-types": "on",
     "react/forbid-prop-types": "off",
     "react/style-prop-object": "off",
     "react/destructuring-assignment": "off",

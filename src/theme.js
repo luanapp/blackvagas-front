@@ -23,6 +23,10 @@ const theme = createMuiTheme({
       containedPrimary: {
         color: '#f2d071',
       },
+      containedSecondary: {
+        color: '#343434',
+        backgroundColor: '#f2d071',
+      },
     },
     MuiSvgIcon: {
       colorPrimary: {
@@ -42,7 +46,7 @@ const theme = createMuiTheme({
       default: '#f2d071',
     },
     text: {
-      primary: '#cacaca',
+      primary: '#f2d071',
       secondary: '#343434',
     },
   },
