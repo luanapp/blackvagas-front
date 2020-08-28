@@ -9,17 +9,17 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     color: theme.palette.background.default,
     backgroundColor: theme.palette.primary.main,
-    padding: 85,
+    padding: theme.spacing(4),
     paddingBottom: 0,
   },
   link: {
-    padding: 10,
+    padding: theme.spacing(2),
   },
   copyright: {
     marginLeft: 'auto',
     marginRight: 'auto',
-    paddingTop: 85,
-    paddingBottom: 15,
+    paddingTop: theme.spacing(10),
+    paddingBottom: theme.spacing(2),
   },
 }));
 

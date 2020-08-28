@@ -48,26 +48,14 @@ const Menu = ({ sm, xs }) => {
     <Grid container item sm={sm} xs={xs}>
       <Grid container item sm={6} xs={6} direction="column">
         {linksLeft.map(({ label, link }) => (
-          <Link
-            key={label}
-            color="secondary"
-            href={link}
-            target="_blank"
-            className={classes.link}
-          >
+          <Link key={label} color="secondary" href={link} target="_blank" className={classes.link} noWrap>
             {t(label)}
           </Link>
         ))}
       </Grid>
       <Grid container item sm={6} xs={6} direction="column">
         {linksRight.map(({ label, link }) => (
-          <Link
-            key={label}
-            color="secondary"
-            href={link}
-            target="_blank"
-            className={classes.link}
-          >
+          <Link key={label} color="secondary" href={link} target="_blank" className={classes.link} noWrap>
             {t(label)}
           </Link>
         ))}

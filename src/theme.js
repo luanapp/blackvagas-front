@@ -1,6 +1,13 @@
-import { green, grey, red } from '@material-ui/core/colors';
+import {
+  green,
+  grey,
+  red
+} from '@material-ui/core/colors';
 
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import {
+  createMuiTheme,
+  responsiveFontSizes
+} from '@material-ui/core/styles';
 
 const typography = {
   fontFamily: 'Work Sans, sans-serif',
@@ -24,7 +31,7 @@ const theme = createMuiTheme({
         color: '#f2d071',
       },
       containedSecondary: {
-        color: '#343434',
+        color: '#2D3037',
         backgroundColor: '#f2d071',
       },
     },
@@ -37,7 +44,7 @@ const theme = createMuiTheme({
 
   palette: {
     primary: {
-      main: '#343434',
+      main: '#2D3037',
     },
     secondary: {
       main: '#ffffff',
@@ -47,7 +54,7 @@ const theme = createMuiTheme({
     },
     text: {
       primary: '#f2d071',
-      secondary: '#343434',
+      secondary: '#2D3037',
     },
   },
   typography: {
