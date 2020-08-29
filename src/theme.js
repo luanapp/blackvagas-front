@@ -1,13 +1,9 @@
-import {
-  green,
-  grey,
-  red
-} from '@material-ui/core/colors';
+import { green, grey, red, yellow } from '@material-ui/core/colors';
 
-import {
-  createMuiTheme,
-  responsiveFontSizes
-} from '@material-ui/core/styles';
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+
+const blackHex = '#2D3037';
+const yellowHex = '#f2d071';
 
 const typography = {
   fontFamily: 'Work Sans, sans-serif',
@@ -28,33 +24,42 @@ const theme = createMuiTheme({
         paddingRight: 30,
       },
       containedPrimary: {
-        color: '#f2d071',
+        color: yellowHex,
       },
       containedSecondary: {
-        color: '#2D3037',
-        backgroundColor: '#f2d071',
+        color: blackHex,
+        backgroundColor: yellowHex,
       },
     },
     MuiSvgIcon: {
       colorPrimary: {
-        color: '#f2d071',
+        color: yellowHex,
+      },
+    },
+    MuiNativeSelect: {
+      containedPrimary: {
+        color: yellowHex,
+      },
+      containedSecondary: {
+        color: blackHex,
+        backgroundColor: yellowHex,
       },
     },
   },
 
   palette: {
     primary: {
-      main: '#2D3037',
+      main: blackHex,
     },
     secondary: {
       main: '#ffffff',
     },
     background: {
-      default: '#f2d071',
+      default: yellowHex,
     },
     text: {
-      primary: '#f2d071',
-      secondary: '#2D3037',
+      primary: yellowHex,
+      secondary: blackHex,
     },
   },
   typography: {
@@ -63,36 +68,7 @@ const theme = createMuiTheme({
       fontSize: 16,
       textTransform: 'capitalize',
       color: '#ff3366',
-    },
-    h1: {
-      letterSpacing: 0,
-      fontSize: 60,
-    },
-    h2: {
-      fontSize: 48,
-    },
-    h3: {
-      fontSize: 42,
-    },
-    h4: {
-      fontSize: 36,
-    },
-    h5: {
-      fontSize: 22,
-      fontWeight: typography.fontWeightMedium,
-    },
-    h6: {
-      fontSize: 18,
-    },
-    subtitle1: {
-      fontSize: 18,
-    },
-    body1: {
-      fontWeight: typography.fontWeightRegular,
-      fontSize: 16,
-    },
-    body2: {
-      fontSize: 14,
+      whiteSpace: 'nowrap',
     },
   },
 });

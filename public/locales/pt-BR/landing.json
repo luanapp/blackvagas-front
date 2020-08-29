@@ -6,5 +6,9 @@
   "middle": {
     "main-text": "Conheça profissionais que podem melhorar o seu negócio",
     "want-to-be-part": "Quero fazer parte"
+  },
+  "bottom": {
+    "main-text": "Encontre as habilidades necessárias para o mercado de trabalho",
+    "skills-placeholder": "Selecione uma habilidade"
   }
 }

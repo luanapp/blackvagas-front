@@ -9,17 +9,20 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     color: theme.palette.background.default,
     backgroundColor: theme.palette.primary.main,
+
     padding: theme.spacing(4),
-    paddingBottom: 0,
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(4, 14, 0),
+    },
   },
-  link: {
-    padding: theme.spacing(2),
+  companyContainer: {
+    [theme.breakpoints.up('sm')]: {
+      justifyContent: 'flex-start',
+    },
   },
   copyright: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    paddingTop: theme.spacing(10),
-    paddingBottom: theme.spacing(2),
+    margin: theme.spacing(0, 'auto', 0),
+    padding: theme.spacing(10, 0, 2),
   },
 }));
 
@@ -30,7 +33,7 @@ const Footer = () => {
     <footer className={classes.root}>
       <Grid container alignItems="center">
         <Grid container item sm={12} xs={12}>
-          <Grid container item sm={4} xs={12} alignItems="flex-start">
+          <Grid container item sm={4} xs={12} justify="center" className={classes.companyContainer}>
             <Typography color="textPrimary" variant="h5">
               BlackVagas
             </Typography>

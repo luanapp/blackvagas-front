@@ -18,13 +18,17 @@ const useStyles = makeStyles(theme => ({
   card: {
     backgroundColor: 'transparent',
   },
-  rightContainer: {
-    padding: theme.spacing(14),
+  textContainer: {
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(14),
+    },
+    padding: theme.spacing(5),
   },
-  leftContainer: {
-    paddingTop: theme.spacing(10),
-    paddingBottom: theme.spacing(10),
-    paddingLeft: theme.spacing(14),
+  cardContainer: {
+    padding: theme.spacing(5),
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(10, 0, 10, 14),
+    },
   },
   button: {
     marginTop: theme.spacing(4),
@@ -39,12 +43,12 @@ const Middle = () => {
 
   return (
     <Grid container item alignItems="center" className={classes.root}>
-      <Grid item sm={6} xs={12} className={classes.leftContainer}>
+      <Grid item sm={6} xs={12} className={classes.cardContainer}>
         <Card elevation={0} className={classes.card}>
           <CardMedia className={classes.media} image={image} />{' '}
         </Card>
       </Grid>
-      <Grid container item sm={6} xs={12} direction="column" alignItems="flex-end" className={classes.rightContainer}>
+      <Grid container item sm={6} xs={12} direction="column" alignItems="flex-end" className={classes.textContainer}>
         <Typography p={5} color="initial" variant="h2" align="right">
           {t(tKey('main-text'))}
         </Typography>

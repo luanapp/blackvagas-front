@@ -12,12 +12,18 @@ const useStyles = makeStyles(theme => ({
     paddingTop: '72.25%',
     verticalAlign: 'bottom',
     position: 'relative',
+    [theme.breakpoints.up('sm')]: {
+      marginTop: theme.spacing(20),
+    },
   },
   card: {
     backgroundColor: 'transparent',
   },
-  leftContainer: {
-    padding: theme.spacing(14),
+  textContainer: {
+    padding: theme.spacing(4),
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(14),
+    },
   },
   button: {
     marginTop: theme.spacing(4),
@@ -40,7 +46,7 @@ const Top = () => {
         direction="column"
         alignItems="flex-start"
         justify="space-around"
-        className={classes.leftContainer}
+        className={classes.textContainer}
       >
         <Typography color="textSecondary" variant="h2" align="left">
           {t(tKey('main-text'))}

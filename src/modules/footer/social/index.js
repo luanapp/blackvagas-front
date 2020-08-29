@@ -9,41 +9,26 @@ import {
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
-  button: {
-    padding: 2,
+const useStyles = makeStyles(theme => ({
+  root: {
+    [theme.breakpoints.up('sm')]: {
+      justifyContent: 'flex-end',
+    },
   },
-});
+  button: {
+    padding: theme.spacing(1),
+  },
+}));
 
 const Social = ({ sm, xs }) => {
   const classes = useStyles();
   return (
-    <Grid
-      container
-      item
-      sm={sm}
-      xs={xs}
-      className={classes.root}
-      alignItems="flex-start"
-      justify="flex-end"
-    >
-      <IconButton
-        className={classes.button}
-        target="_blank"
-        href="https://www.facebook.com/MovimentoBlackMoney"
-      >
+    <Grid container item sm={sm} xs={xs} className={classes.root} alignItems="flex-start" justify="center">
+      <IconButton className={classes.button} target="_blank" href="https://www.facebook.com/MovimentoBlackMoney">
         <FacebookIcon aria-label="facebook" color="primary" fontSize="large" />
       </IconButton>
-      <IconButton
-        className={classes.button}
-        target="_blank"
-        href="https://www.instagram.com/movimentoblackmoney"
-      >
-        <InstagramIcon
-          aria-label="instagram"
-          color="primary"
-          fontSize="large"
-        />
+      <IconButton className={classes.button} target="_blank" href="https://www.instagram.com/movimentoblackmoney">
+        <InstagramIcon aria-label="instagram" color="primary" fontSize="large" />
       </IconButton>
       <IconButton
         className={classes.button}
@@ -52,11 +37,7 @@ const Social = ({ sm, xs }) => {
       >
         <LinkedInIcon aria-label="linkedin" color="primary" fontSize="large" />
       </IconButton>
-      <IconButton
-        className={classes.button}
-        target="_blank"
-        href="https://twitter.com/movblackmoney"
-      >
+      <IconButton className={classes.button} target="_blank" href="https://twitter.com/movblackmoney">
         <TwitterIcon aria-label="twitter" color="primary" fontSize="large" />
       </IconButton>
     </Grid>
