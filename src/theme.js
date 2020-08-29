@@ -36,13 +36,18 @@ const theme = createMuiTheme({
         color: yellowHex,
       },
     },
-    MuiNativeSelect: {
-      containedPrimary: {
+    MuiInputLabel: {
+      formControl: {
         color: yellowHex,
+        whiteSpace: 'nowrap',
       },
-      containedSecondary: {
-        color: blackHex,
-        backgroundColor: yellowHex,
+    },
+    MuiSelect: {
+      root: {
+        borderBottom: `1px solid ${yellowHex}`,
+      },
+      icon: {
+        color: yellowHex,
       },
     },
   },

@@ -1,14 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Grid,
-  Typography,
-  Card,
-  CardMedia,
-  FormControl,
-  InputLabel,
-  NativeSelect,
-  FormHelperText,
-} from '@material-ui/core';
+import { Grid, Typography, Card, CardMedia, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 import image from './images/landing-bottom.png';
@@ -39,21 +30,22 @@ const useStyles = makeStyles(theme => ({
       padding: theme.spacing(10, 14, 10, 0),
     },
   },
-  button: {
+  formControl: {
     marginTop: theme.spacing(4),
+    minWidth: theme.spacing(28),
   },
 }));
 
 const Middle = () => {
-  const [skill, setSkill] = useState(null);
+  const [skill, setSkill] = useState('');
   const classes = useStyles();
   const { t } = useTranslation(['landing']);
-  const tPrefix = 'middle';
+  const tPrefix = 'bottom';
   const tKey = key => `${tPrefix}.${key}`;
 
   const handleChange = event => {
     const value = event.target.value;
-    setSkill(skill);
+    setSkill(value);
   };
 
   return (
@@ -62,9 +54,12 @@ const Middle = () => {
         <Typography p={5} color="initial" variant="h2" align="right">
           {t(tKey('main-text'))}
         </Typography>
-        <FormControl color="primary">
-          <InputLabel htmlFor="skills">Skills</InputLabel>
-          <NativeSelect
+        <FormControl variant="standard" className={classes.formControl}>
+          <InputLabel id="skill-label" color="secondary">
+            {t(tKey('select-skill'))}
+          </InputLabel>
+          <Select
+            labelId="skill-label"
             value={skill}
             onChange={handleChange}
             inputProps={{
@@ -72,12 +67,11 @@ const Middle = () => {
               id: 'skills',
             }}
           >
-            <option aria-label="None" value="" />
-            <option value="a">Ten</option>
-            <option value="b">Twenty</option>
-            <option value="c">Thirty</option>
-          </NativeSelect>
-          <FormHelperText>Some important helper text</FormHelperText>
+            <MenuItem aria-label="None" value="" />
+            <MenuItem value="a">Ten</MenuItem>
+            <MenuItem value="b">Twenty</MenuItem>
+            <MenuItem value="c">Thirty</MenuItem>
+          </Select>
         </FormControl>
       </Grid>
       <Grid item sm={6} xs={12} className={classes.rightContainer}>
