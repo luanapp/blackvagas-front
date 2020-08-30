@@ -10,6 +10,9 @@
   "bottom": {
     "main-text": "Encontre as habilidades necessárias para o mercado de trabalho",
     "select-skill": "Selecione uma habilidade",
-    "skills-placeholder": "Selecione uma habilidade"
+    "skills-placeholder": "Selecione uma habilidade",
+    "design": "Design",
+    "education": "Educação",
+    "diversity-and-inclusion": "Diversidade e Inclusão"
   }
 }

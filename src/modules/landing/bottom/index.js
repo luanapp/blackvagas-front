@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Grid, Typography, Card, CardMedia, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
+import { useQuery } from 'react-query';
+import { pathOr } from 'ramda';
+import { getSkills } from '../../../services';
 import image from './images/landing-bottom.png';
 
 const useStyles = makeStyles(theme => ({
@@ -40,6 +43,9 @@ const Middle = () => {
   const [skill, setSkill] = useState('');
   const classes = useStyles();
   const { t } = useTranslation(['landing']);
+  const { data, isLoading } = useQuery('skills', getSkills, { refetchOnWindowFocus: false });
+  const skills = useMemo(() => pathOr([], ['data'], data), [data]);
+
   const tPrefix = 'bottom';
   const tKey = key => `${tPrefix}.${key}`;
 
@@ -59,6 +65,7 @@ const Middle = () => {
             {t(tKey('select-skill'))}
           </InputLabel>
           <Select
+            disabled={isLoading}
             labelId="skill-label"
             value={skill}
             onChange={handleChange}
@@ -67,10 +74,13 @@ const Middle = () => {
               id: 'skills',
             }}
           >
-            <MenuItem aria-label="None" value="" />
-            <MenuItem value="a">Ten</MenuItem>
-            <MenuItem value="b">Twenty</MenuItem>
-            <MenuItem value="c">Thirty</MenuItem>
+            <MenuItem key="0" aria-label="None" value="" />
+            {skills &&
+              skills.map(({ id, localeKey }) => (
+                <MenuItem key={id} value={id}>
+                  {t(tKey(localeKey))}
+                </MenuItem>
+              ))}
           </Select>
         </FormControl>
       </Grid>
