@@ -50,6 +50,11 @@ const theme = createMuiTheme({
         color: yellowHex,
       },
     },
+    MuiMenu: {
+      paper: {
+        backgroundColor: blackHex,
+      },
+    },
   },
 
   palette: {
