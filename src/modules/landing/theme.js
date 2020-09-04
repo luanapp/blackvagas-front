@@ -1,11 +1,7 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
-import { fade } from '@material-ui/core/styles/colorManipulator';
 
 const blackHex = '#2D3037';
 const yellowHex = '#f2d071';
-const titleColor = '#37474F';
-const primaryColor = '#959595';
-const buttonPrimaryColor = '#FBC226';
 
 const typography = {
   fontFamily: 'Work Sans, sans-serif',
@@ -26,16 +22,35 @@ const theme = createMuiTheme({
         paddingRight: 30,
       },
       containedPrimary: {
-        color: titleColor,
-        backgroundColor: buttonPrimaryColor,
-        '&:hover': {
-          backgroundColor: fade(buttonPrimaryColor, 0.7),
-        },
+        color: yellowHex,
+      },
+      containedSecondary: {
+        color: blackHex,
+        backgroundColor: yellowHex,
+      },
+    },
+    MuiSvgIcon: {
+      colorPrimary: {
+        color: yellowHex,
       },
     },
     MuiInputLabel: {
       formControl: {
+        color: yellowHex,
         whiteSpace: 'nowrap',
+      },
+    },
+    MuiSelect: {
+      root: {
+        borderBottom: `1px solid ${yellowHex}`,
+      },
+      icon: {
+        color: yellowHex,
+      },
+    },
+    MuiMenu: {
+      paper: {
+        backgroundColor: blackHex,
       },
     },
   },
@@ -51,19 +66,20 @@ const theme = createMuiTheme({
       default: yellowHex,
     },
     text: {
-      primary: titleColor,
-      secondary: primaryColor,
+      primary: yellowHex,
+      secondary: blackHex,
     },
   },
   typography: {
     ...typography,
     h5: {
-      color: titleColor,
+      color: '#ffffff',
       fontWeight: 'bold',
     },
     button: {
       fontSize: 16,
       textTransform: 'capitalize',
+      color: '#ff3366',
       whiteSpace: 'nowrap',
     },
   },

@@ -1,17 +1,20 @@
 import React from 'react';
-import { Divider, Grid } from '@material-ui/core';
+import { Divider, Grid, ThemeProvider } from '@material-ui/core';
+import theme from './theme';
 import Top from './top';
 import Middle from './middle';
 import Bottom from './bottom';
 
 const Landing = () => (
-  <Grid container alignItems="center">
-    <Top />
-    <Middle />
-    <Divider variant="middle" />
-    <Bottom />
-    <Divider variant="middle" />
-  </Grid>
+  <ThemeProvider theme={theme}>
+    <Grid container alignItems="center">
+      <Top />
+      <Middle />
+      <Divider variant="middle" />
+      <Bottom />
+      <Divider variant="middle" />
+    </Grid>
+  </ThemeProvider>
 );
 
 export default Landing;

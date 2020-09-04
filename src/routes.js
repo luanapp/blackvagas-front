@@ -1,8 +1,8 @@
 import App from './App';
 import Landing from './modules/landing';
+import Login from './modules/login';
 
-const routes = [
-  {
+const routes = [{
     order: 0,
     path: '/',
     component: Landing,
@@ -14,7 +14,7 @@ const routes = [
     path: '/login',
     label: 'enter',
     exact: true,
-    component: App,
+    component: Login,
     visible: true,
   },
   {
@@ -24,8 +24,7 @@ const routes = [
     exact: true,
     component: App,
     visible: true,
-    routes: [
-      {
+    routes: [{
         path: '/find',
         label: 'find',
         component: App,

@@ -1,21 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { filter } from 'ramda';
-import {
-  IconButton,
-  Button,
-  ButtonGroup,
-  Hidden,
-  Drawer,
-  Typography,
-} from '@material-ui/core';
+import { IconButton, Button, ButtonGroup, Hidden, Drawer, Typography, ThemeProvider } from '@material-ui/core';
 import { Close as CloseIcon } from '@material-ui/icons';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { useTranslation } from 'react-i18next';
 import { useLocation, NavLink } from 'react-router-dom';
+import secondatyTheme from '../../landing/theme';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   grid: {
     display: 'flex',
     [theme.breakpoints.up('sm')]: {
@@ -31,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
     '& button': {
       color: theme.palette.secondary.main,
     },
+
     '& span': {
       justifyContent: 'left',
       marginLeft: 10,
@@ -46,15 +41,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const VerticalMenu = ({ routes, handleClose, open }) => {
-  const { t } = useTranslation(['routes']);
+  const [t] = useTranslation(['routes']);
   const classes = useStyles();
   const theme = useTheme();
   const location = useLocation();
 
-  const buttonColor = (path) => {
+  const buttonColor = path => {
     return location.pathname === path ? classes.selectedButton : null;
   };
-  const isVisible = (route) => !!route.visible;
+  const isVisible = route => !!route.visible;
   const visibleRoutes = filter(isVisible, routes);
 
   const drawerContent = (
@@ -66,12 +61,7 @@ const VerticalMenu = ({ routes, handleClose, open }) => {
         aria-label="vertical outlined primary button group"
       >
         {visibleRoutes.map(({ path, label, order }) => (
-          <Button
-            to={path}
-            key={order}
-            component={NavLink}
-            classes={{ label: buttonColor(path) }}
-          >
+          <Button to={path} color="inherit" key={order} component={NavLink} classes={{ label: buttonColor(path) }}>
             {t(label)}
           </Button>
         ))}
@@ -80,30 +70,32 @@ const VerticalMenu = ({ routes, handleClose, open }) => {
   );
 
   return (
-    <nav>
-      <Hidden smUp implementation="css">
-        <Drawer
-          anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-          variant="temporary"
-          open={open}
-          onClose={handleClose}
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-          ModalProps={{
-            keepMounted: true,
-          }}
-        >
-          <IconButton onClick={handleClose} className={classes.closeMenuButton}>
-            <CloseIcon />
-          </IconButton>
-          <Button color="inherit" to="/" component={NavLink}>
-            <Typography variant="h5">BlackVagas</Typography>
-          </Button>
-          {drawerContent}
-        </Drawer>
-      </Hidden>
-    </nav>
+    <ThemeProvider theme={secondatyTheme}>
+      <nav>
+        <Hidden smUp implementation="css">
+          <Drawer
+            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+            variant="temporary"
+            open={open}
+            onClose={handleClose}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            ModalProps={{
+              keepMounted: true,
+            }}
+          >
+            <IconButton onClick={handleClose} className={classes.closeMenuButton}>
+              <CloseIcon />
+            </IconButton>
+            <Button color="inherit" to="/" component={NavLink}>
+              <Typography variant="h5">BlackVagas</Typography>
+            </Button>
+            {drawerContent}
+          </Drawer>
+        </Hidden>
+      </nav>
+    </ThemeProvider>
   );
 };
 

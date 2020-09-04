@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 
 const Menu = ({ sm, xs }) => {
   const classes = useStyles();
-  const { t } = useTranslation(['footer']);
+  const [t] = useTranslation(['footer']);
   const linksLeft = [
     {
       label: 'about',

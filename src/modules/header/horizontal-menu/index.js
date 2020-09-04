@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useLocation, NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   grid: {
     display: 'flex',
     [theme.breakpoints.up('sm')]: {
@@ -29,24 +29,22 @@ const useStyles = makeStyles((theme) => ({
 const HorizontalMenu = ({ routes }) => {
   const classes = useStyles();
   const location = useLocation();
-  const { t } = useTranslation(['routes']);
+  const [t] = useTranslation(['routes']);
 
-  const isVisible = (route) => !!route.visible;
+  const isVisible = route => !!route.visible;
   const visibleRoutes = filter(isVisible, routes);
-  const buttonColor = (path) => {
+  const buttonColor = path => {
     return location.pathname === path ? classes.selectedButton : null;
   };
 
   return (
     <Hidden xsDown>
       <Button color="inherit" to="/" component={NavLink}>
-        <Typography variant="h5">BlackVagas</Typography>
+        <Typography color="inherit" variant="h5">
+          BlackVagas
+        </Typography>
       </Button>
-      <ButtonGroup
-        variant="text"
-        className={classes.grid}
-        aria-label="text button group"
-      >
+      <ButtonGroup variant="text" className={classes.grid} aria-label="text button group">
         {visibleRoutes.map(({ path, label, order }) => (
           <Button
             key={order}

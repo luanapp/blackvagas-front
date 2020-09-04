@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 
 const Middle = () => {
   const classes = useStyles();
-  const { t } = useTranslation(['landing']);
+  const [t] = useTranslation(['landing']);
   const tPrefix = 'middle';
   const tKey = key => `${tPrefix}.${key}`;
 

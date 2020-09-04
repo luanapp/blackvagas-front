@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
 const Middle = () => {
   const [skill, setSkill] = useState('');
   const classes = useStyles();
-  const { t } = useTranslation(['landing']);
+  const [t] = useTranslation(['landing']);
   const { data, isLoading } = useQuery('skills', getSkills, { refetchOnWindowFocus: false });
   const skills = useMemo(() => pathOr([], ['data'], data), [data]);
 

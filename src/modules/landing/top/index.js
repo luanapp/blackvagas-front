@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 
 const Top = () => {
   const classes = useStyles();
-  const { t } = useTranslation(['landing']);
+  const [t] = useTranslation(['landing']);
   const tPrefix = 'top';
   const tKey = key => `${tPrefix}.${key}`;
 
