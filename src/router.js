@@ -11,8 +11,8 @@ const RouterConfig = ({ routes, layout: Layout }) => (
           key={`key-${i + 1}`}
           path={route.path}
           exact={!!route.exact}
-          render={(props) => (
-            <Suspense fallback="loading">
+          render={props => (
+            <Suspense fallback="loading...">
               <Layout {...props} routes={routes}>
                 <route.component {...props} routes={route.routes} />
               </Layout>

@@ -13,14 +13,19 @@ const routes = [{
 		path: '/users',
 		methods: [{
 			type: 'get',
-		}, ],
+		}],
 	},
 	{
 		path: '/skills',
 		methods: [{
 			type: 'get',
-		}, ],
-	},
+		}],
+	}, {
+		path: '/login',
+		methods: [{
+			type: 'post'
+		}]
+	}
 ];
 
 app.routes(routes).listen(process.env.PORT || 3050);

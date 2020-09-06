@@ -1,12 +1,4 @@
-import axios from "axios";
-import {
-  BASE_URL
-} from "../config";
+import { getSkills } from './skills';
+import { login } from './authentication';
 
-const apiClient = axios.create({
-  baseURL: BASE_URL
-})
-
-export const getSkills = async () => {
-  return apiClient.get('/skills');
-}
+export { getSkills, login };

@@ -2,5 +2,10 @@
   "login": "Login",
   "email": "Email",
   "password": "Senha",
-  "enter": "Entrar"
+  "enter": "Entrar",
+  "errors": {
+    "email_required": "Preencha o e-mail",
+    "email_invalid": "Preencha com um e-mail válido",
+    "password_required": "Preencha a senha"
+  }
 }

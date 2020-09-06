@@ -2,6 +2,11 @@
   "name": "blackvagas-front",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cornflourblue/react-jwt-authentication-example.git"
+  },
+  "license": "MIT",
   "dependencies": {
     "@date-io/date-fns": "1.x",
     "@material-ui/core": "^4.11.0",

@@ -1,8 +1,12 @@
 import React from 'react';
-import { Paper, Typography, TextField, Button, LinearProgress, Container } from '@material-ui/core';
-import { Formik, Form, Field } from 'formik';
+import { useHistory } from 'react-router-dom';
+import { Paper, Typography, Container } from '@material-ui/core';
+import { Formik } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
+import * as Yup from 'yup';
+import LoginForm from './login-form';
+import { login } from '../../services';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,28 +23,24 @@ const useStyles = makeStyles(theme => ({
   header: {
     margin: theme.spacing(5, 2, 1),
   },
-  formContainer: {
-    [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing(0, 10),
-      margin: theme.spacing('auto'),
-    },
-  },
-  input: {
-    width: '100%',
-    margin: theme.spacing(2, 0),
-  },
-  buttonContainer: {
-    display: 'flex',
-    margin: theme.spacing(4, 'auto', 2, 'auto'),
-  },
-  button: {
-    margin: 'auto',
-  },
 }));
+
+const doLogin = history => async ({ email, password }) => {
+  const { jwt, error } = await login({ email, password });
+  if (!!jwt) {
+    history.push('/');
+  }
+};
 
 const Login = () => {
   const classes = useStyles();
   const [t] = useTranslation(['login']);
+  const history = useHistory();
+
+  const validation = Yup.object().shape({
+    email: Yup.string().required(t('errors.email_required')).email(t('errors.email_invalid')),
+    password: Yup.string().required(t('errors.password_required')),
+  });
 
   return (
     <Container className={classes.root}>
@@ -53,48 +53,10 @@ const Login = () => {
             email: '',
             password: '',
           }}
-          validate={values => {
-            const errors = {};
-            if (!values.email) {
-              errors.email = 'Required';
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-              errors.email = 'Invalid email address';
-            }
-            return errors;
-          }}
-          onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              setSubmitting(false);
-              alert(JSON.stringify(values, null, 2));
-            }, 500);
-          }}
+          validationSchema={validation}
+          onSubmit={doLogin(history)}
         >
-          {({ submitForm, isSubmitting }) => (
-            <Container className={classes.formContainer}>
-              <Form>
-                <Field component={TextField} name="email" type="email" label={t('email')} className={classes.input} />
-                <Field
-                  component={TextField}
-                  type="password"
-                  label={t('password')}
-                  name="password"
-                  className={classes.input}
-                />
-                {isSubmitting && <LinearProgress />}
-                <Container className={classes.buttonContainer}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    disabled={isSubmitting}
-                    onClick={submitForm}
-                    className={classes.button}
-                  >
-                    {t('enter')}
-                  </Button>
-                </Container>
-              </Form>
-            </Container>
-          )}
+          {props => <LoginForm {...props} />}
         </Formik>
       </Paper>
     </Container>
