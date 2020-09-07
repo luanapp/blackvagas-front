@@ -2,12 +2,14 @@ import App from './App';
 import Landing from './modules/landing';
 import Login from './modules/login';
 
-const routes = [{
+const routes = [
+  {
     order: 0,
     path: '/',
     component: Landing,
     exact: true,
     visible: false,
+    auth: false,
   },
   {
     order: 1,
@@ -16,6 +18,7 @@ const routes = [{
     exact: true,
     component: Login,
     visible: true,
+    auth: false,
   },
   {
     order: 2,
@@ -24,7 +27,9 @@ const routes = [{
     exact: true,
     component: App,
     visible: true,
-    routes: [{
+    auth: false,
+    routes: [
+      {
         path: '/find',
         label: 'find',
         component: App,
@@ -43,6 +48,7 @@ const routes = [{
     exact: true,
     component: App,
     visible: true,
+    auth: true,
   },
   {
     order: 4,
@@ -51,6 +57,7 @@ const routes = [{
     exact: true,
     component: App,
     visible: true,
+    auth: false,
   },
 ];
 

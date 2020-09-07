@@ -1,4 +1,7 @@
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import {
+  createMuiTheme,
+  responsiveFontSizes
+} from '@material-ui/core/styles';
 
 const blackHex = '#2D3037';
 const yellowHex = '#f2d071';
@@ -72,6 +75,10 @@ const theme = createMuiTheme({
   },
   typography: {
     ...typography,
+    h2: {
+      color: yellowHex,
+      fontWeight: 'normal',
+    },
     h5: {
       color: '#ffffff',
       fontWeight: 'bold',

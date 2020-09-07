@@ -1,12 +1,12 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Paper, Typography, Container } from '@material-ui/core';
 import { Formik } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import LoginForm from './login-form';
-import { login } from '../../services';
+import { login } from '@services/authentication';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,10 +25,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const doLogin = history => async ({ email, password }) => {
+const doLogin = ({ location, history }) => async ({ email, password }) => {
   const { jwt, error } = await login({ email, password });
   if (!!jwt) {
-    history.push('/');
+    const { from } = location.state || { from: { pathname: '/' } };
+    console.log('from', from);
+    history.push(from);
   }
 };
 
@@ -36,6 +38,7 @@ const Login = () => {
   const classes = useStyles();
   const [t] = useTranslation(['login']);
   const history = useHistory();
+  const location = useLocation();
 
   const validation = Yup.object().shape({
     email: Yup.string().required(t('errors.email_required')).email(t('errors.email_invalid')),
@@ -54,7 +57,7 @@ const Login = () => {
             password: '',
           }}
           validationSchema={validation}
-          onSubmit={doLogin(history)}
+          onSubmit={doLogin({ location, history })}
         >
           {props => <LoginForm {...props} />}
         </Formik>

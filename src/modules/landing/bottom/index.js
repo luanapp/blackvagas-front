@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from 'react-query';
 import { pathOr } from 'ramda';
-import { getSkills } from '../../../services';
+import { getSkills } from '@services/skills';
 import image from './images/landing-bottom.png';
 
 const useStyles = makeStyles(theme => ({

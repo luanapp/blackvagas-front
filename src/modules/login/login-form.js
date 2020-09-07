@@ -3,7 +3,7 @@ import { Button, LinearProgress, Container } from '@material-ui/core';
 import { Form, Field } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
-import InputText from '../../components/InputText';
+import InputText from '@components/InputText';
 
 const useStyles = makeStyles(theme => ({
   root: {
