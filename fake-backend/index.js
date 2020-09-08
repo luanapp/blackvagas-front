@@ -25,6 +25,12 @@ const routes = [{
 		methods: [{
 			type: 'post'
 		}]
+	}, {
+		path: '/reset-password',
+		methods: [{
+			type: 'post',
+			statusCode: 204
+		}]
 	}
 ];
 

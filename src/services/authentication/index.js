@@ -21,9 +21,13 @@ const login = async ({ email, password }) => {
   return { ...data, error };
 };
 
+const resetPassword = async ({ email }) => {
+  await apiClient.post('/reset-password');
+};
+
 const logout = async () => {
   localStorage.removeItem(AUTHENTICATION_KEY);
   await currentUserSubject.next(null);
 };
 
-export { isAuthenticated, authenticatedUser, login, logout };
+export { isAuthenticated, authenticatedUser, login, logout, resetPassword };

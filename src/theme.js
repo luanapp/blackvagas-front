@@ -38,6 +38,13 @@ const theme = createMuiTheme({
         whiteSpace: 'nowrap',
       },
     },
+    MuiLink: {
+      root: {
+        '&:hover': {
+          cursor: 'pointer',
+        },
+      },
+    },
   },
 
   palette: {

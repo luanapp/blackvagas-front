@@ -1,12 +1,21 @@
 import App from './App';
 import Landing from './modules/landing';
 import Login from './modules/login';
+import ResetPassword from './modules/password-reset';
 
 const routes = [
   {
     order: 0,
     path: '/',
     component: Landing,
+    exact: true,
+    visible: false,
+    auth: false,
+  },
+  {
+    order: 0,
+    path: '/password-reset',
+    component: ResetPassword,
     exact: true,
     visible: false,
     auth: false,

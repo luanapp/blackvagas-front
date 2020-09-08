@@ -1,8 +1,10 @@
 {
   "login": "Login",
+  "reset-password": "Esqueceu sua senha?",
   "email": "Email",
   "password": "Senha",
   "enter": "Entrar",
+  "send": "Enviar",
   "errors": {
     "email_required": "Preencha o e-mail",
     "email_invalid": "Preencha com um e-mail válido",
