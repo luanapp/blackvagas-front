@@ -8,6 +8,7 @@
   "errors": {
     "email_required": "Preencha o e-mail",
     "email_invalid": "Preencha com um e-mail válido",
-    "password_required": "Preencha a senha"
+    "password_required": "Preencha a senha",
+    "login_fail": "Houve um erro ao tentar efetuar o login. Tente novamente"
   }
 }

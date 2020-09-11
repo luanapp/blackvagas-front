@@ -9,6 +9,9 @@ module.exports = function override(config, env) {
     '@services': path.resolve(__dirname, `${paths.appSrc}/services/`),
     '@modules': path.resolve(__dirname, `${paths.appSrc}/modules/`),
     '@config': path.resolve(__dirname, `${paths.appSrc}/config/`),
+    '@providers': path.resolve(__dirname, `${paths.appSrc}/common/providers/`),
+    '@constants': path.resolve(__dirname, `${paths.appSrc}/common/constants/`),
+    '@hooks': path.resolve(__dirname, `${paths.appSrc}/common/hooks/`),
   })(config, env);
   return config;
 };

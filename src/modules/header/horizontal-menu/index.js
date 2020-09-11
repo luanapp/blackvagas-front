@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { filter } from 'ramda';
 import { Button, ButtonGroup, Hidden, Typography } from '@material-ui/core';
@@ -26,16 +26,36 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const HorizontalMenu = ({ routes }) => {
+const MenuButton = ({ path, label }) => {
   const classes = useStyles();
-  const location = useLocation();
   const [t] = useTranslation(['routes']);
-
-  const isVisible = route => !!route.visible;
-  const visibleRoutes = filter(isVisible, routes);
+  const location = useLocation();
   const buttonColor = path => {
     return location.pathname === path ? classes.selectedButton : null;
   };
+  return (
+    <Button
+      to={path}
+      component={NavLink}
+      color="secondary"
+      classes={{
+        root: classes.vButton,
+        label: buttonColor(path),
+      }}
+    >
+      {t(label)}
+    </Button>
+  );
+};
+const isVisible = route => !!route.visible;
+const renderVisibleRoutes = routes => {
+  const visibleRoutes = filter(isVisible, routes);
+  return visibleRoutes.map(({ order, ...props }) => <MenuButton key={order} {...props} />);
+};
+
+const HorizontalMenu = ({ routes }) => {
+  const classes = useStyles();
+  const visibleRoutes = useMemo(() => renderVisibleRoutes(routes), [routes]);
 
   return (
     <Hidden xsDown>
@@ -45,20 +65,7 @@ const HorizontalMenu = ({ routes }) => {
         </Typography>
       </Button>
       <ButtonGroup variant="text" className={classes.grid} aria-label="text button group">
-        {visibleRoutes.map(({ path, label, order }) => (
-          <Button
-            key={order}
-            to={path}
-            component={NavLink}
-            color="secondary"
-            classes={{
-              root: classes.vButton,
-              label: buttonColor(path),
-            }}
-          >
-            {t(label)}
-          </Button>
-        ))}
+        {visibleRoutes}
       </ButtonGroup>
     </Hidden>
   );

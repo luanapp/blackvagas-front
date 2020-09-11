@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import Header from '../header';
 import Footer from '../footer';
 import theme from '../../theme';
+import Notification from '@components/Notification';
 
 const Layout = ({ children, routes }) => (
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header routes={routes} />
+      <Notification />
       <div id="content">{children}</div>
       <Footer routes={routes} />
     </ThemeProvider>

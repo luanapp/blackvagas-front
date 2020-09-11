@@ -7,10 +7,10 @@ import PrivateRoute from '@components/PrivateRoute';
 const RouterConfig = ({ routes, layout: Layout }) => (
   <Router>
     <Switch>
-      {routes.map((route, i) =>
+      {routes.map(route =>
         route.auth ? (
           <PrivateRoute
-            key={`key-${i + 1}`}
+            key={route.id}
             path={route.path}
             exact={!!route.exact}
             render={({ ...props }) => (
@@ -23,7 +23,7 @@ const RouterConfig = ({ routes, layout: Layout }) => (
           />
         ) : (
           <Route
-            key={`key-${i + 1}`}
+            key={route.id}
             path={route.path}
             exact={!!route.exact}
             render={({ ...props }) => (

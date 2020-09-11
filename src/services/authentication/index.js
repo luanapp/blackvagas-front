@@ -8,7 +8,7 @@ const isAuthenticated = !!currentUserSubject.value;
 const authenticatedUser = currentUserSubject.value;
 
 const login = async ({ email, password }) => {
-  const { data, status, error } = await apiClient.post('/login', {
+  const { data, status } = await apiClient.post('/login', {
     email,
     password,
   });
@@ -18,7 +18,7 @@ const login = async ({ email, password }) => {
     await currentUserSubject.next(data.jwt);
   }
 
-  return { ...data, error };
+  return data;
 };
 
 const resetPassword = async ({ email }) => {
