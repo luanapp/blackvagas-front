@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import { AppBar, Toolbar, IconButton, Hidden } from '@material-ui/core';
 import { Menu as MenuIcon } from '@material-ui/icons';
@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import HorizontalMenu from './horizontal-menu';
 import VerticalMenu from './vertical-menu';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
   },
@@ -16,25 +16,20 @@ const Header = ({ routes }) => {
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleOpenDrawer = () => {
+  const handleOpenDrawer = useCallback(() => {
     setMobileOpen(true);
-  };
+  }, [setMobileOpen]);
 
-  const handleCloseDrawer = () => {
+  const handleCloseDrawer = useCallback(() => {
     setMobileOpen(false);
-  };
+  }, [setMobileOpen]);
 
   return (
     <nav>
       <AppBar position="sticky" className={classes.appBar} variant="outlined">
         <Toolbar>
           <Hidden smUp>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              edge="start"
-              onClick={handleOpenDrawer}
-            >
+            <IconButton color="inherit" aria-label="Open drawer" edge="start" onClick={handleOpenDrawer}>
               <MenuIcon />
             </IconButton>
           </Hidden>
@@ -42,11 +37,7 @@ const Header = ({ routes }) => {
         </Toolbar>
       </AppBar>
 
-      <VerticalMenu
-        handleClose={handleCloseDrawer}
-        open={mobileOpen}
-        routes={routes}
-      />
+      <VerticalMenu handleClose={handleCloseDrawer} open={mobileOpen} routes={routes} />
     </nav>
   );
 };

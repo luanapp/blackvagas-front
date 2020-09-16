@@ -30,9 +30,12 @@ const MenuButton = ({ path, label }) => {
   const classes = useStyles();
   const [t] = useTranslation(['routes']);
   const location = useLocation();
-  const buttonColor = path => {
-    return location.pathname === path ? classes.selectedButton : null;
-  };
+  const buttonColor = useMemo(() => (location.pathname === path ? classes.selectedButton : null), [
+    location,
+    classes,
+    path,
+  ]);
+
   return (
     <Button
       to={path}
@@ -40,7 +43,7 @@ const MenuButton = ({ path, label }) => {
       color="secondary"
       classes={{
         root: classes.vButton,
-        label: buttonColor(path),
+        label: buttonColor,
       }}
     >
       {t(label)}
@@ -50,7 +53,7 @@ const MenuButton = ({ path, label }) => {
 const isVisible = route => !!route.visible;
 const renderVisibleRoutes = routes => {
   const visibleRoutes = filter(isVisible, routes);
-  return visibleRoutes.map(({ order, ...props }) => <MenuButton key={order} {...props} />);
+  return visibleRoutes.map(({ id, ...props }) => <MenuButton key={id.toString()} {...props} />);
 };
 
 const HorizontalMenu = ({ routes }) => {
@@ -76,7 +79,7 @@ HorizontalMenu.propTypes = {
     PropTypes.shape({
       path: PropTypes.string.isRequired,
       label: PropTypes.string,
-      order: PropTypes.number.isRequired,
+      id: PropTypes.number.isRequired,
     })
   ).isRequired,
 };

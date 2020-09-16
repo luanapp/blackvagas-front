@@ -14,7 +14,7 @@ export default function NotificationProvider({ children }) {
 
   const data = {
     notification,
-    addNotification: useCallback((message, status) => addNotification(message, status), []),
+    addNotification: useCallback(({ message, status }) => addNotification({ message, status }), []),
     removeNotification: useCallback(() => removeNotification(), []),
   };
 

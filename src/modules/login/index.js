@@ -8,7 +8,6 @@ import * as Yup from 'yup';
 import LoginForm from './login-form';
 import { login } from '@services/authentication';
 import { useNotification } from '@hooks';
-import { STATUS } from '@constants/notification';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,7 +31,7 @@ const Login = () => {
   const [t] = useTranslation(['login']);
   const history = useHistory();
   const location = useLocation();
-  const { addNotification } = useNotification();
+  const { notifyError } = useNotification();
 
   const handleLogin = useCallback(
     async ({ email, password }) => {
@@ -41,10 +40,10 @@ const Login = () => {
         const { from } = location.state || { from: { pathname: '/' } };
         history.push(from);
       } catch {
-        addNotification({ message: t('errors.login_fail'), status: STATUS.ERROR });
+        notifyError(t('errors.login_fail'));
       }
     },
-    [location, history, addNotification]
+    [location, history, notifyError, t]
   );
 
   const validation = Yup.object().shape({

@@ -3,8 +3,9 @@ import Landing from './modules/landing';
 import Login from './modules/login';
 import ResetPassword from './modules/password-reset';
 
-const routes = [{
-    id: 0,
+const routes = [
+  {
+    id: 1,
     order: 0,
     path: '/',
     component: Landing,
@@ -13,7 +14,7 @@ const routes = [{
     auth: false,
   },
   {
-    id: 1,
+    id: 2,
     order: 0,
     path: '/password-reset',
     component: ResetPassword,
@@ -22,7 +23,7 @@ const routes = [{
     auth: false,
   },
   {
-    id: 2,
+    id: 3,
     order: 1,
     path: '/login',
     label: 'enter',
@@ -32,7 +33,7 @@ const routes = [{
     auth: false,
   },
   {
-    id: 3,
+    id: 4,
     order: 2,
     path: '/register',
     label: 'register',
@@ -40,14 +41,15 @@ const routes = [{
     component: App,
     visible: true,
     auth: false,
-    routes: [{
-        id: 4,
+    routes: [
+      {
+        id: 5,
         path: '/find',
         label: 'find',
         component: App,
       },
       {
-        id: 5,
+        id: 6,
         path: '/new',
         label: 'new',
         component: App,
@@ -55,7 +57,7 @@ const routes = [{
     ],
   },
   {
-    id: 6,
+    id: 7,
     order: 3,
     path: '/jobs',
     label: 'jobs-vacancies',
@@ -65,7 +67,7 @@ const routes = [{
     auth: true,
   },
   {
-    id: 7,
+    id: 8,
     order: 4,
     path: '/companies',
     label: 'for-companies',

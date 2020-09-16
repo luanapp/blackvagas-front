@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { filter } from 'ramda';
 import { IconButton, Button, ButtonGroup, Hidden, Drawer, Typography, ThemeProvider } from '@material-ui/core';
@@ -40,17 +40,33 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const VerticalMenu = ({ routes, handleClose, open }) => {
+const MenuButton = ({ path, label }) => {
   const [t] = useTranslation(['routes']);
   const classes = useStyles();
-  const theme = useTheme();
   const location = useLocation();
+  const buttonColor = useMemo(() => (location.pathname === path ? classes.selectedButton : null), [
+    location,
+    classes,
+    path,
+  ]);
 
-  const buttonColor = path => {
-    return location.pathname === path ? classes.selectedButton : null;
-  };
-  const isVisible = route => !!route.visible;
+  return (
+    <Button to={path} color="inherit" component={NavLink} classes={{ label: buttonColor }}>
+      {t(label)}
+    </Button>
+  );
+};
+
+const isVisible = route => !!route.visible;
+const renderVisibleRoutes = routes => {
   const visibleRoutes = filter(isVisible, routes);
+  return visibleRoutes.map(({ id, ...props }) => <MenuButton key={id.toString()} {...props} />);
+};
+
+const VerticalMenu = ({ routes, handleClose, open }) => {
+  const classes = useStyles();
+  const theme = useTheme();
+  const visibleRoutes = useMemo(() => renderVisibleRoutes(routes), [routes]);
 
   const drawerContent = (
     <div>
@@ -60,11 +76,7 @@ const VerticalMenu = ({ routes, handleClose, open }) => {
         className={classes.grid}
         aria-label="vertical outlined primary button group"
       >
-        {visibleRoutes.map(({ path, label, order }) => (
-          <Button to={path} color="inherit" key={order} component={NavLink} classes={{ label: buttonColor(path) }}>
-            {t(label)}
-          </Button>
-        ))}
+        {visibleRoutes}
       </ButtonGroup>
     </div>
   );
@@ -106,7 +118,7 @@ VerticalMenu.propTypes = {
     PropTypes.shape({
       path: PropTypes.string.isRequired,
       label: PropTypes.string,
-      order: PropTypes.number.isRequired,
+      id: PropTypes.number.isRequired,
     })
   ).isRequired,
 };
