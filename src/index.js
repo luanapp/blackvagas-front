@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { StrictMode, Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import NotificationProvider from './common/providers/NotificationProvider';
-import Layout from '@modules/layout';
 import * as serviceWorker from './serviceWorker';
-import RouterConfig from './router';
-import routes from './routes';
 import './i18n';
+import App from './App';
 
 ReactDOM.render(
-  <NotificationProvider>
-    <RouterConfig routes={routes} layout={Layout} />
-  </NotificationProvider>,
+  <StrictMode>
+    <Suspense fallback="Loading...">
+      <App />
+    </Suspense>
+  </StrictMode>,
   document.getElementById('root')
 );
 

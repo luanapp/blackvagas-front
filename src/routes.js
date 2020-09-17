@@ -1,4 +1,4 @@
-import App from './App';
+import Void from './Void';
 import Landing from './modules/landing';
 import Login from './modules/login';
 import ResetPassword from './modules/password-reset';
@@ -38,7 +38,7 @@ const routes = [
     path: '/register',
     label: 'register',
     exact: true,
-    component: App,
+    component: Void,
     visible: true,
     auth: false,
     routes: [
@@ -46,13 +46,13 @@ const routes = [
         id: 5,
         path: '/find',
         label: 'find',
-        component: App,
+        component: Void,
       },
       {
         id: 6,
         path: '/new',
         label: 'new',
-        component: App,
+        component: Void,
       },
     ],
   },
@@ -62,7 +62,7 @@ const routes = [
     path: '/jobs',
     label: 'jobs-vacancies',
     exact: true,
-    component: App,
+    component: Void,
     visible: true,
     auth: true,
   },
@@ -72,7 +72,7 @@ const routes = [
     path: '/companies',
     label: 'for-companies',
     exact: true,
-    component: App,
+    component: Void,
     visible: true,
     auth: false,
   },

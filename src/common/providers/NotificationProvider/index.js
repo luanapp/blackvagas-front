@@ -9,13 +9,13 @@ export const NotificationContext = createContext({
 export default function NotificationProvider({ children }) {
   const [notification, setNotification] = useState({});
 
-  const addNotification = ({ message, status }) => setNotification({ message, status });
-  const removeNotification = () => setNotification({});
+  const addNotification = useCallback(({ message, status }) => setNotification({ message, status }), [setNotification]);
+  const removeNotification = useCallback(() => setNotification({}), [setNotification]);
 
   const data = {
     notification,
-    addNotification: useCallback(({ message, status }) => addNotification({ message, status }), []),
-    removeNotification: useCallback(() => removeNotification(), []),
+    addNotification,
+    removeNotification,
   };
 
   return <NotificationContext.Provider value={data}>{children}</NotificationContext.Provider>;

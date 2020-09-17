@@ -34,7 +34,14 @@ const LoginForm = ({ isSubmitting }) => {
   return (
     <Container className={classes.root}>
       <Form>
-        <Field component={InputText} name="email" type="email" label={t('email')} className={classes.input} />
+        <Field
+          autoComplete="email"
+          component={InputText}
+          name="email"
+          type="email"
+          label={t('email')}
+          className={classes.input}
+        />
         <Field
           component={InputText}
           type="password"

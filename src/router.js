@@ -1,49 +1,26 @@
-import React, { Suspense, useCallback, useMemo } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import PrivateRoute from '@components/PrivateRoute';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import PrivateComponent from '@components/PrivateComponent';
+import Header from './modules/header';
+import Footer from './modules/footer';
+import routes from './routes';
 
-const renderRoute = ({ Component, Layout, routes, route }) => (
-  <Component
-    key={route.id.toString()}
-    path={route.path}
-    exact={!!route.exact}
-    render={({ ...props }) => (
-      <Suspense fallback="loading...">
-        <Layout {...props} routes={routes}>
-          <route.component {...props} routes={route.routes} />
-        </Layout>
-      </Suspense>
-    )}
-  />
+const Router = () => (
+  <BrowserRouter>
+    <Header routes={routes} />
+    <Switch>
+      {routes.map(({ id, exact, auth, path, component }) => (
+        <Route
+          key={id}
+          exact={exact}
+          path={path}
+          render={props => <PrivateComponent auth={auth} {...props} Component={component} />}
+        />
+      ))}
+    </Switch>
+    <Footer routes={routes} />
+  </BrowserRouter>
 );
 
-const RouterConfig = ({ routes, layout: Layout }) => {
-  const renderPrivateRoute = useCallback(route => renderRoute({ Component: PrivateRoute, Layout, routes, route }), [
-    routes,
-    Layout,
-  ]);
-  const renderRegularRoute = useCallback(route => renderRoute({ Component: Route, Layout, routes, route }), [
-    routes,
-    Layout,
-  ]);
-
-  const allRoutes = useMemo(
-    () => routes.map(route => (route.auth ? renderPrivateRoute(route) : renderRegularRoute(route))),
-    [routes, renderPrivateRoute, renderRegularRoute]
-  );
-
-  return (
-    <Router>
-      <Switch>{allRoutes}</Switch>
-    </Router>
-  );
-};
-
-RouterConfig.propTypes = {
-  layout: PropTypes.any.isRequired,
-  routes: PropTypes.array.isRequired,
-};
-
-export default RouterConfig;
+export default Router;

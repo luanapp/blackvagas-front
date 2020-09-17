@@ -9,6 +9,10 @@
     "email_required": "Preencha o e-mail",
     "email_invalid": "Preencha com um e-mail válido",
     "password_required": "Preencha a senha",
-    "login_fail": "Houve um erro ao tentar efetuar o login. Tente novamente"
+    "login_fail": "Houve um erro ao tentar efetuar o login. Tente novamente",
+    "reset-password": "Houve um erro ao recuperar a senha. Tente novamente"
+  },
+  "success": {
+    "reset-password": "Um e-mail para a recuperação da senha foi enviada com sucesso!"
   }
 }

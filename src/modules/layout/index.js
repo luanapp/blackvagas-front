@@ -1,26 +1,22 @@
 import React from 'react';
 import { ThemeProvider, CssBaseline } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import Header from '../header';
-import Footer from '../footer';
 import theme from '../../theme';
 import Notification from '@components/Notification';
+import NotificationProvider from '@providers/NotificationProvider';
 
-const Layout = ({ children, routes }) => (
-  <React.StrictMode>
+const Layout = ({ children }) => (
+  <NotificationProvider>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Header routes={routes} />
       <Notification />
       <div id="content">{children}</div>
-      <Footer routes={routes} />
     </ThemeProvider>
-  </React.StrictMode>
+  </NotificationProvider>
 );
 
 Layout.propTypes = {
   children: PropTypes.node,
-  routes: PropTypes.array.isRequired,
 };
 
 Layout.defaultProps = {

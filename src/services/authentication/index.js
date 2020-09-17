@@ -22,7 +22,9 @@ const login = async ({ email, password }) => {
 };
 
 const resetPassword = async ({ email }) => {
-  await apiClient.post('/reset-password');
+  await apiClient.post('/reset-password', {
+    email,
+  });
 };
 
 const logout = async () => {

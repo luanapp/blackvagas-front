@@ -4,8 +4,8 @@ import { filter } from 'ramda';
 import { Button, ButtonGroup, Hidden, Typography } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { useLocation, NavLink } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { NavLink } from 'react-router-dom';
+import MenuButton from '../menu-button';
 
 const useStyles = makeStyles(theme => ({
   grid: {
@@ -26,30 +26,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const MenuButton = ({ path, label }) => {
-  const classes = useStyles();
-  const [t] = useTranslation(['routes']);
-  const location = useLocation();
-  const buttonColor = useMemo(() => (location.pathname === path ? classes.selectedButton : null), [
-    location,
-    classes,
-    path,
-  ]);
-
-  return (
-    <Button
-      to={path}
-      component={NavLink}
-      color="secondary"
-      classes={{
-        root: classes.vButton,
-        label: buttonColor,
-      }}
-    >
-      {t(label)}
-    </Button>
-  );
-};
 const isVisible = route => !!route.visible;
 const renderVisibleRoutes = routes => {
   const visibleRoutes = filter(isVisible, routes);

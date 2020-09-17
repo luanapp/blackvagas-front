@@ -5,8 +5,8 @@ import { IconButton, Button, ButtonGroup, Hidden, Drawer, Typography, ThemeProvi
 import { Close as CloseIcon } from '@material-ui/icons';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import { useTranslation } from 'react-i18next';
-import { useLocation, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import MenuButton from '../menu-button';
 import secondatyTheme from '../../landing/theme';
 
 const useStyles = makeStyles(theme => ({
@@ -39,23 +39,6 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.background.default,
   },
 }));
-
-const MenuButton = ({ path, label }) => {
-  const [t] = useTranslation(['routes']);
-  const classes = useStyles();
-  const location = useLocation();
-  const buttonColor = useMemo(() => (location.pathname === path ? classes.selectedButton : null), [
-    location,
-    classes,
-    path,
-  ]);
-
-  return (
-    <Button to={path} color="inherit" component={NavLink} classes={{ label: buttonColor }}>
-      {t(label)}
-    </Button>
-  );
-};
 
 const isVisible = route => !!route.visible;
 const renderVisibleRoutes = routes => {

@@ -51,7 +51,7 @@ function server(options) {
       return response.send(data);
     }
 
-    let content = readFile(file || path);
+    let content = code !== 204 ? readFile(file || path) : null;
 
     if (search) {
       content = createSearchableContent(method, req, content, options);

@@ -1,13 +1,12 @@
 import { useContext } from 'react';
 import { NotificationContext } from '@providers/NotificationProvider';
-import { STATUS } from '@constants/notification';
 
 function useNotification() {
   const { notification, addNotification, removeNotification } = useContext(NotificationContext);
 
-  const notifySuccess = message => addNotification({ message, status: STATUS.SUCCESS });
-  const notifyError = message => addNotification({ message, status: STATUS.ERROR });
-  const notifyInfo = message => addNotification({ message, status: STATUS.INFO });
+  const notifySuccess = message => message && addNotification({ message, status: 'success' });
+  const notifyError = message => message && addNotification({ message, status: 'error' });
+  const notifyInfo = message => message && addNotification({ message, status: 'info' });
 
   return { notification, notifySuccess, notifyError, notifyInfo, removeNotification };
 }

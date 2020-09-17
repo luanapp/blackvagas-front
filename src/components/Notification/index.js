@@ -3,7 +3,6 @@ import { Snackbar, Container } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import { useNotification } from '@hooks';
-import { STATUS } from '@constants/notification';
 
 const Alert = props => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -17,13 +16,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
 }));
-
-const SEVERITIES = {
-  [STATUS.ERROR]: 'error',
-  [STATUS.WARN]: 'warning',
-  [STATUS.INFO]: 'info',
-  [STATUS.SUCCESS]: 'success',
-};
 
 const Notification = () => {
   const classes = useStyles();
@@ -43,6 +35,7 @@ const Notification = () => {
     [removeNotification]
   );
 
+  console.log('message', message);
   return (
     <Container className={classes.root} data-testid="notification">
       <Snackbar
@@ -51,9 +44,7 @@ const Notification = () => {
         autoHideDuration={5000}
         onClose={handleClose}
       >
-        <Alert onClose={handleClose} severity={SEVERITIES[status]}>
-          {message}
-        </Alert>
+        <Alert severity={status}>{message}</Alert>
       </Snackbar>
     </Container>
   );

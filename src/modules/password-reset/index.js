@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
 import { Paper, Typography, Container } from '@material-ui/core';
 import { Formik } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import Fields from './fields';
 import { resetPassword } from '@services/authentication';
+import { useNotification } from '@hooks';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   login: {
     margin: 'auto',
     [theme.breakpoints.up('sm')]: {
-      width: '60%',
+      width: '70%',
       height: '35%',
     },
   },
@@ -25,15 +25,19 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const doReset = ({ location, history }) => async ({ email }) => {
-  const { error } = await resetPassword({ email });
+const doReset = ({ t, notifyError, notifySuccess }) => async ({ email }) => {
+  try {
+    await resetPassword({ email });
+    notifySuccess(t('success.reset-password'));
+  } catch (error) {
+    notifyError(t('errors.reset-password'));
+  }
 };
 
 const ResetPassword = () => {
   const classes = useStyles();
   const [t] = useTranslation(['login']);
-  const history = useHistory();
-  const location = useLocation();
+  const { notifySuccess, notifyError } = useNotification();
 
   const validation = Yup.object().shape({
     email: Yup.string().required(t('errors.email_required')).email(t('errors.email_invalid')),
@@ -50,7 +54,7 @@ const ResetPassword = () => {
             email: '',
           }}
           validationSchema={validation}
-          onSubmit={doReset({ location, history })}
+          onSubmit={doReset({ t, notifyError, notifySuccess })}
         >
           {props => <Fields {...props} />}
         </Formik>
