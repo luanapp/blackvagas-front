@@ -17,6 +17,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const vertical = 'top';
+const horizontal = 'center';
 const Notification = () => {
   const classes = useStyles();
   const {
@@ -38,13 +40,10 @@ const Notification = () => {
   console.log('message', message);
   return (
     <Container className={classes.root} data-testid="notification">
-      <Snackbar
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        open={!!message}
-        autoHideDuration={5000}
-        onClose={handleClose}
-      >
-        <Alert severity={status}>{message}</Alert>
+      <Snackbar anchorOrigin={{ vertical, horizontal }} open={!!message} autoHideDuration={5000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity={status}>
+          {message}
+        </Alert>
       </Snackbar>
     </Container>
   );

@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import './i18n';
 import App from './App';
+import NotificationProvider from '@providers/NotificationProvider';
 
 ReactDOM.render(
   <StrictMode>
-    <Suspense fallback="Loading...">
-      <App />
-    </Suspense>
+    <NotificationProvider>
+      <Suspense fallback="Loading...">
+        <App />
+      </Suspense>
+    </NotificationProvider>
   </StrictMode>,
   document.getElementById('root')
 );
