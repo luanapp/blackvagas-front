@@ -2,6 +2,7 @@ import Void from './Void';
 import Landing from './modules/landing';
 import Login from './modules/login';
 import ResetPassword from './modules/password-reset';
+import NewPassword from './modules/new-password';
 
 const routes = [
   {
@@ -74,6 +75,16 @@ const routes = [
     exact: true,
     component: Void,
     visible: true,
+    auth: false,
+  },
+  {
+    id: 9,
+    order: 1,
+    path: '/new-password',
+    label: 'new-password',
+    exact: false,
+    component: NewPassword,
+    visible: false,
     auth: false,
   },
 ];

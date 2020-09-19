@@ -1,18 +1,25 @@
 {
-  "login": "Login",
   "reset-password": "Esqueceu sua senha?",
+  "errors": {
+    "email-required": "Preencha o e-mail",
+    "email-invalid": "Preencha com um e-mail válido",
+    "password-required": "Preencha a senha",
+    "login-fail": "Houve um erro ao tentar efetuar o login. Tente novamente",
+    "reset-password": "Houve um erro ao recuperar a senha. Tente novamente",
+    "passwords-must-match": "As senhas estão diferentes!",
+    "invalid-link": "O link para mudar a senha é inválido!",
+    "password-change-fail": "Houve um erro ao atualizar a senha. Tente novamente"
+  },
+  "success": {
+    "reset-password": "Um e-mail para a recuperação da senha foi enviado para {{email}}!",
+    "change-password": "Senha atualizada com sucesso!"
+  },
+  "login": "Login",
+  "save": "Salvar",
   "email": "Email",
   "password": "Senha",
   "enter": "Entrar",
   "send": "Enviar",
-  "errors": {
-    "email_required": "Preencha o e-mail",
-    "email_invalid": "Preencha com um e-mail válido",
-    "password_required": "Preencha a senha",
-    "login_fail": "Houve um erro ao tentar efetuar o login. Tente novamente",
-    "reset-password": "Houve um erro ao recuperar a senha. Tente novamente"
-  },
-  "success": {
-    "reset-password": "Um e-mail para a recuperação da senha foi enviada com sucesso!"
-  }
+  "new-password": "Nova senha",
+  "confirm-password": "Confirmar senha"
 }

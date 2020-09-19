@@ -40,15 +40,15 @@ const Login = () => {
         const { from } = location.state || { from: { pathname: '/' } };
         history.push(from);
       } catch {
-        notifyError(t('errors.login_fail'));
+        notifyError(t('errors.login-fail'));
       }
     },
     [location, history, notifyError, t]
   );
 
   const validation = Yup.object().shape({
-    email: Yup.string().required(t('errors.email_required')).email(t('errors.email_invalid')),
-    password: Yup.string().required(t('errors.password_required')),
+    email: Yup.string().required(t('errors.email-required')).email(t('errors.email-invalid')),
+    password: Yup.string().required(t('errors.password-required')),
   });
 
   return (

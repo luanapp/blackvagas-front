@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Paper, Typography, Container } from '@material-ui/core';
 import { Formik } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
@@ -25,10 +26,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const doReset = ({ t, notifyError, notifySuccess }) => async ({ email }) => {
+const doReset = ({ t, history, notifyError, notifySuccess }) => async ({ email }) => {
   try {
     await resetPassword({ email });
-    notifySuccess(t('success.reset-password'));
+    notifySuccess(t('success.reset-password', { email }));
+    history.push('/login');
   } catch (error) {
     notifyError(t('errors.reset-password'));
   }
@@ -36,6 +38,7 @@ const doReset = ({ t, notifyError, notifySuccess }) => async ({ email }) => {
 
 const ResetPassword = () => {
   const classes = useStyles();
+  const history = useHistory();
   const [t] = useTranslation(['login']);
   const { notifySuccess, notifyError } = useNotification();
 
@@ -54,7 +57,7 @@ const ResetPassword = () => {
             email: '',
           }}
           validationSchema={validation}
-          onSubmit={doReset({ t, notifyError, notifySuccess })}
+          onSubmit={doReset({ t, history, notifyError, notifySuccess })}
         >
           {props => <Fields {...props} />}
         </Formik>

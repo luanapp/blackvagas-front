@@ -44,6 +44,24 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/change-password',
+    methods: [
+      {
+        type: 'post',
+        code: 204,
+      },
+    ],
+  },
+  {
+    path: '/check-pass-token',
+    methods: [
+      {
+        type: 'post',
+        code: 200,
+      },
+    ],
+  },
 ];
 
 app.routes(routes).listen(process.env.PORT || 3050);

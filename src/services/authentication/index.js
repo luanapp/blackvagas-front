@@ -27,9 +27,30 @@ const resetPassword = async ({ email }) => {
   });
 };
 
+const changePassword = async ({ newPassword, confirmPassword, token }) => {
+  const { data, status } = await apiClient.post('/change-password', {
+    newPassword,
+    confirmPassword,
+    token,
+  });
+
+  if (status === 200) {
+    logout();
+  }
+
+  return data;
+};
+
+const checkChangePasswdToken = async ({ token }) => {
+  const { data } = await apiClient.post('/check-pass-token', {
+    token,
+  });
+  return data;
+};
+
 const logout = async () => {
   localStorage.removeItem(AUTHENTICATION_KEY);
   await currentUserSubject.next(null);
 };
 
-export { isAuthenticated, authenticatedUser, login, logout, resetPassword };
+export { isAuthenticated, authenticatedUser, login, logout, resetPassword, changePassword, checkChangePasswdToken };
