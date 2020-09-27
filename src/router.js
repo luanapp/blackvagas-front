@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import PrivateComponent from '@components/PrivateComponent';
+import { PrivateComponent } from '@components';
 import Header from './modules/header';
 import Footer from './modules/footer';
 import routes from './routes';

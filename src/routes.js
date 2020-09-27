@@ -3,6 +3,7 @@ import Landing from './modules/landing';
 import Login from './modules/login';
 import ResetPassword from './modules/password-reset';
 import NewPassword from './modules/new-password';
+import JobList from './modules/jobs/list';
 
 const routes = [
   {
@@ -63,7 +64,7 @@ const routes = [
     path: '/jobs',
     label: 'jobs-vacancies',
     exact: true,
-    component: Void,
+    component: JobList,
     visible: true,
     auth: true,
   },

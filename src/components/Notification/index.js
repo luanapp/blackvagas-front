@@ -37,7 +37,6 @@ const Notification = () => {
     [removeNotification]
   );
 
-  console.log('message', message);
   return (
     <Container className={classes.root} data-testid="notification">
       <Snackbar anchorOrigin={{ vertical, horizontal }} open={!!message} autoHideDuration={5000} onClose={handleClose}>

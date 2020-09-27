@@ -1,0 +1,9 @@
+{
+  "job-card-container": {
+    "favorite-aria-label": "Adicionar/remover favorito"
+  },
+  "job-card": {
+    "relative-date-prefix": "Há"
+  },
+  "job-search": "O que você está procurando?"
+}

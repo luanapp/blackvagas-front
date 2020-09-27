@@ -2,7 +2,7 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 
 const blackHex = '#2D3037';
-const yellowHex = '#f2d071';
+const backgroundDefault = '#f2d071';
 const titleColor = '#37474F';
 const primaryColor = '#959595';
 const buttonPrimaryColor = '#FBC226';
@@ -55,7 +55,7 @@ const theme = createMuiTheme({
       main: '#ffffff',
     },
     background: {
-      default: yellowHex,
+      default: backgroundDefault,
     },
     text: {
       primary: titleColor,
