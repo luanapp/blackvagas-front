@@ -12,6 +12,9 @@ const useStyles = makeStyles(theme => ({
       padding: theme.spacing(2, 4),
     },
   },
+  content: {
+    paddingTop: 0,
+  },
 }));
 
 const i18nKey = 'job-card-container';
@@ -24,7 +27,7 @@ const JobCardContainer = ({ title, children, actionSection, isFavorite }) => {
   return (
     <Card elevation={3} className={classes.root}>
       <CardHeader title={title} action={<IconButton aria-label={headerAriaLabel}>{favorite}</IconButton>} />
-      <CardContent>{children}</CardContent>
+      <CardContent className={classes.content}>{children}</CardContent>
       {actionSection && <CardActionArea>{actionSection}</CardActionArea>}
     </Card>
   );
@@ -32,7 +35,7 @@ const JobCardContainer = ({ title, children, actionSection, isFavorite }) => {
 
 JobCardContainer.propTypes = {
   actionSection: PropTypes.element,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.array]).isRequired,
   isFavorite: PropTypes.bool,
   title: PropTypes.string.isRequired,
 };

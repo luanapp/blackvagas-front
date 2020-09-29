@@ -2,12 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { JobCardContainer, RelativeDateLabel, MoneyLabel } from '@components';
-import { Container, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
   container: {
     padding: 0,
+  },
+  upperLabel: {
+    fontSize: '1.125rem',
+    color: fade(theme.colors.black, 0.75),
   },
 }));
 
@@ -25,19 +30,14 @@ const JobCard = ({
   const [t] = useTranslation('jobs');
   return (
     <JobCardContainer title={title}>
-      <Container className={classes.container}>
-        <Typography variant="body2" component="p">
-          {company}
-        </Typography>
-        <Typography variant="body2" component="p">
-          {`${city},${state}`}
-        </Typography>
-        <MoneyLabel value={montlyIncome} />
-        <Typography variant="body2" component="p">
-          {`${city},${state}`}
-        </Typography>
-        <RelativeDateLabel date={creationDate} dateSufix={t(`${i18nPrexix}.relative-date-prefix`)} />
-      </Container>
+      <Typography variant="body2" component="p" className={classes.upperLabel}>
+        {company}
+      </Typography>
+      <Typography variant="body2" gutterBottom component="p" className={classes.upperLabel}>
+        {`${city}, ${state}`}
+      </Typography>
+      <MoneyLabel value={montlyIncome} />
+      <RelativeDateLabel date={creationDate} dateSufix={t(`${i18nPrexix}.relative-date-prefix`)} />
     </JobCardContainer>
   );
 };

@@ -47,6 +47,9 @@ const theme = createMuiTheme({
     },
   },
 
+  colors: {
+    black: blackHex,
+  },
   palette: {
     primary: {
       main: blackHex,
