@@ -73,7 +73,7 @@ const theme = createMuiTheme({
     },
     button: {
       fontSize: 16,
-      textTransform: 'capitalize',
+      textTransform: 'none',
       whiteSpace: 'nowrap',
     },
   },

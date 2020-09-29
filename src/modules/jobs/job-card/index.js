@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { JobCardContainer, RelativeDateLabel, MoneyLabel } from '@components';
-import { Typography } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { makeStyles } from '@material-ui/styles';
 
@@ -16,7 +16,16 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const CardAction = ({ label, onClick }) => {
+  return (
+    <Button variant="contained" color="primary" onClick={onClick}>
+      {label}
+    </Button>
+  );
+};
+
 const i18nPrexix = 'job-card';
+const jobI18n = key => `${i18nPrexix}.${key}`;
 const JobCard = ({
   job: {
     title,
@@ -29,7 +38,7 @@ const JobCard = ({
   const classes = useStyles();
   const [t] = useTranslation('jobs');
   return (
-    <JobCardContainer title={title}>
+    <JobCardContainer title={title} actionSection={<CardAction label={t(jobI18n('apply'))} />}>
       <Typography variant="body2" component="p" className={classes.upperLabel}>
         {company}
       </Typography>
@@ -37,7 +46,7 @@ const JobCard = ({
         {`${city}, ${state}`}
       </Typography>
       <MoneyLabel value={montlyIncome} />
-      <RelativeDateLabel date={creationDate} dateSufix={t(`${i18nPrexix}.relative-date-prefix`)} />
+      <RelativeDateLabel date={creationDate} dateSufix={t(jobI18n('relative-date-prefix'))} />
     </JobCardContainer>
   );
 };

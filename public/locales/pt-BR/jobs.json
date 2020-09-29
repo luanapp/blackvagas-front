@@ -3,7 +3,8 @@
     "favorite-aria-label": "Adicionar/remover favorito"
   },
   "job-card": {
-    "relative-date-prefix": "Há"
+    "relative-date-prefix": "Há",
+    "apply": "Candidatar-se"
   },
   "job-search": "O que você está procurando?"
 }
