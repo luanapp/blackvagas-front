@@ -7,9 +7,6 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
-  container: {
-    padding: 0,
-  },
   upperLabel: {
     fontSize: '1.125rem',
     color: fade(theme.colors.black, 0.75),
