@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { Paper, Typography, Container } from '@material-ui/core';
 import { Formik } from 'formik';
@@ -7,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import PasswordForm from './password-form';
 import { changePassword, checkChangePasswdToken } from '@services/authentication';
-import { useNotification, useQuery, useMountEffect } from '@hooks';
+import { useNotification, useMountEffect } from '@hooks';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,8 +32,7 @@ const Login = () => {
   const [t] = useTranslation(['login']);
   const history = useHistory();
   const { notifyError, notifySuccess } = useNotification();
-  const query = useQuery();
-  const token = query.get('token');
+  const { token } = useParams();
   const [username, setUsername] = useState('');
 
   const handlePasswdChange = useCallback(

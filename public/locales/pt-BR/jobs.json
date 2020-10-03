@@ -6,5 +6,7 @@
     "relative-date-prefix": "Há",
     "apply": "Candidatar-se"
   },
-  "job-search": "O que você está procurando?"
+  "job-search": "O que você está procurando?",
+  "noResults": "Nenhuma vaga encontrada com os filtros selecionados",
+  "searchError": "Houve um erro ao realizar a busca. Tente novamente mais tarde"
 }

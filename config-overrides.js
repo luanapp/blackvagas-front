@@ -12,6 +12,7 @@ module.exports = function override(config, env) {
     '@providers': path.resolve(__dirname, `${paths.appSrc}/common/providers/`),
     '@constants': path.resolve(__dirname, `${paths.appSrc}/common/constants/`),
     '@hooks': path.resolve(__dirname, `${paths.appSrc}/common/hooks/`),
+    '@pages': path.resolve(__dirname, `${paths.appSrc}/pages`),
   })(config, env);
   return config;
 };

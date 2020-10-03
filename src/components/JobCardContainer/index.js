@@ -37,12 +37,13 @@ JobCardContainer.propTypes = {
   actionSection: PropTypes.element,
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.array]).isRequired,
   isFavorite: PropTypes.bool,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 };
 
 JobCardContainer.defaultProps = {
   actionSection: null,
   isFavorite: false,
+  title: '',
 };
 
 export default JobCardContainer;

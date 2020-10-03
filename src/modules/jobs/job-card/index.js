@@ -5,6 +5,7 @@ import { JobCardContainer, RelativeDateLabel, MoneyLabel } from '@components';
 import { Button, Typography } from '@material-ui/core';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { makeStyles } from '@material-ui/styles';
+import { Skeleton } from '@material-ui/lab';
 
 const useStyles = makeStyles(theme => ({
   upperLabel: {
@@ -12,6 +13,15 @@ const useStyles = makeStyles(theme => ({
     color: fade(theme.colors.black, 0.75),
   },
 }));
+
+export const JobCardPlaceHolder = () => (
+  <Skeleton variant="rect" component={JobCardContainer}>
+    <Skeleton variant="text" component={Typography} />
+    <Skeleton variant="text" component={Typography} />
+    <Skeleton variant="text" component={Typography} />
+    <Skeleton variant="text" component={Typography} />
+  </Skeleton>
+);
 
 const CardAction = ({ label, onClick }) => {
   return (

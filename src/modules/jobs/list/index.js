@@ -1,14 +1,10 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { useQuery } from 'react-query';
-import { pathOr } from 'ramda';
-import { Grid, Paper, Hidden, Box } from '@material-ui/core';
+import { Grid, Paper, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { SearchBox } from '@components';
-import { getJobs } from '../../../services/jobs';
-import JobCard from '../job-card';
-import { Skeleton } from '@material-ui/lab';
+import Listsection from './ListSection';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,17 +22,11 @@ const useStyles = makeStyles(theme => ({
       marginBottom: theme.spacing(3),
     },
   },
-  card: {
-    margin: theme.spacing(3),
-  },
 }));
 
 const JobList = () => {
   const classes = useStyles();
   const [t] = useTranslation('jobs');
-  const { data, isError, isLoading } = useQuery('jobs', getJobs, { retry: false });
-  const jobResult = useMemo(() => pathOr({}, ['data'], data), [data]);
-  const { page, limit, results: jobs } = jobResult || {};
 
   return (
     <div>
@@ -51,18 +41,7 @@ const JobList = () => {
             </Grid>
           </Hidden>
           <Grid item sm={9} xs={12}>
-            {isLoading && (
-              <Skeleton>
-                <Skeleton />
-                <Skeleton width="60%" />
-              </Skeleton>
-            )}
-            {jobs &&
-              jobs.map(job => (
-                <div key={job.id} className={classes.card}>
-                  <JobCard job={job} classes={{ root: classes.card }} />
-                </div>
-              ))}
+            <Listsection />
           </Grid>
         </Grid>
       </Grid>
