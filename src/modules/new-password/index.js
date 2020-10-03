@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Paper, Typography, Container } from '@material-ui/core';
 import { Formik } from 'formik';
+import * as queryString from 'query-string';
 import { makeStyles } from '@material-ui/core/styles';
-import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import PasswordForm from './password-form';
 import { changePassword, checkChangePasswdToken } from '@services/authentication';
@@ -31,8 +31,9 @@ const Login = () => {
   const classes = useStyles();
   const [t] = useTranslation(['login']);
   const history = useHistory();
+  const { search } = useLocation();
   const { notifyError, notifySuccess } = useNotification();
-  const { token } = useParams();
+  const { token } = queryString.parse(search);
   const [username, setUsername] = useState('');
 
   const handlePasswdChange = useCallback(
