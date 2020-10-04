@@ -6,7 +6,16 @@
     "relative-date-prefix": "Há",
     "apply": "Candidatar-se"
   },
-  "job-search": "O que você está procurando?",
-  "noResults": "Nenhuma vaga encontrada com os filtros selecionados",
-  "searchError": "Houve um erro ao realizar a busca. Tente novamente mais tarde"
+  "search-box": {
+    "placeholder": "O que você está procurando?"
+  },
+  "list-section": {
+    "noResults": "Nenhuma vaga encontrada com os filtros selecionados",
+    "searchError": "Houve um erro ao realizar a busca. Tente novamente mais tarde"
+  },
+  "filter-section": {
+    "order-by": "Ordenar por",
+    "filter-place": "Local",
+    "job-type": "Tipo de Vaga"
+  }
 }

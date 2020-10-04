@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { Grid, Paper, Hidden } from '@material-ui/core';
+import { Grid, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { SearchBox } from '@components';
 import Listsection from './ListSection';
+import FiltersSection from './FiltersSection';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,15 +33,15 @@ const JobList = () => {
     <div>
       <Grid container alignContent="center" alignItems="center" className={classes.root}>
         <Grid item sm={12} xs={12} className={classes.search}>
-          <SearchBox onChange={() => {}} text={t('job-search')} />
+          <SearchBox onChange={() => {}} text={t('search-box.placeholder')} />
         </Grid>
         <Grid container item spacing={3}>
           <Hidden xsDown>
-            <Grid item sm={3}>
-              <Paper>Ordenar Por</Paper>
+            <Grid item sm={4}>
+              <FiltersSection />
             </Grid>
           </Hidden>
-          <Grid item sm={9} xs={12}>
+          <Grid item sm={8} xs={12}>
             <Listsection />
           </Grid>
         </Grid>
