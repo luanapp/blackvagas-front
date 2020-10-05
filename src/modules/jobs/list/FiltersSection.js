@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { Paper } from '@material-ui/core';
@@ -26,6 +26,7 @@ const jobTypes = ['Tempo Integral', 'Estágio', 'Efetivo/CLT', 'Freelancer', 'Me
 const FiltersSection = ({ filters, onChange }) => {
   const classes = useStyles();
   const [t] = useTranslation('jobs');
+  const onFilterChange = useCallback(filters => onChange(filters), [onChange]);
 
   return (
     <Paper className={classes.root}>
@@ -35,13 +36,26 @@ const FiltersSection = ({ filters, onChange }) => {
           title={t('filter-section.order-by')}
           filters={filters}
           values={Object.values(ORDER_BY_FIELDS)}
+          onClick={value => onFilterChange({ order: value })}
         />
       </div>
       <div className={classes.filterContainer}>
-        <FilterSection title={t('filter-section.filter-place')} filters={filters} values={places} vertical />
+        <FilterSection
+          title={t('filter-section.filter-place')}
+          filters={filters}
+          values={places}
+          vertical
+          onClick={value => onFilterChange({ location: value })}
+        />
       </div>
       <div className={classes.filterContainer}>
-        <FilterSection title={t('filter-section.job-type')} filters={filters} values={jobTypes} vertical />
+        <FilterSection
+          title={t('filter-section.job-type')}
+          filters={filters}
+          values={jobTypes}
+          vertical
+          onClick={value => onFilterChange({ type: value })}
+        />
       </div>
     </Paper>
   );
@@ -49,14 +63,8 @@ const FiltersSection = ({ filters, onChange }) => {
 
 FiltersSection.propTypes = {
   filters: PropTypes.shape({
-    order: PropTypes.string,
-  }),
-};
-
-FiltersSection.defaultProps = {
-  filters: {
-    order: 'date',
-  },
+    order: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default FiltersSection;

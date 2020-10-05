@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from 'react-query';
 import { pathOr, isEmpty } from 'ramda';
@@ -34,10 +35,10 @@ const NoResultsAlert = ({ t }) => (
   </Alert>
 );
 
-const ListSection = () => {
+const ListSection = ({ filters }) => {
   const classes = useStyles();
   const [t] = useTranslation('jobs');
-  const { data, isError, isLoading } = useQuery('jobs', getJobs, { retry: false });
+  const { data, isError, isLoading } = useQuery(['jobs', filters], getJobs, { retry: false });
   const jobResult = useMemo(() => pathOr({}, ['data'], data), [data]);
   const { page, limit, results: jobs } = jobResult || {};
 
@@ -54,6 +55,10 @@ const ListSection = () => {
         ))}
     </>
   );
+};
+
+ListSection.propTypes = {
+  filters: PropTypes.object.isRequired,
 };
 
 export default ListSection;

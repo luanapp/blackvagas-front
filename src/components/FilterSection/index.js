@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { Button, Paper, Typography } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { cond, pathOr, equals, T, always } from 'ramda';
 
@@ -24,21 +24,23 @@ const FiltersSection = ({ title, filters, values, onClick, useI18n, vertical }) 
     cond([
       [equals(pathOr('', ['order'], filters)), always(classes.selectedFilter)],
       [equals(pathOr('', ['location'], filters)), always(classes.selectedFilter)],
+      [equals(pathOr('', ['type'], filters)), always(classes.selectedFilter)],
       [T, always(classes.unselectedFilter)],
     ]),
     [filters]
   );
+  const handleClick = useCallback(filter => () => onClick(filter), [onClick]);
 
   const filterComponents = useMemo(() => {
     const components = values.map(filter => (
       <Typography key={filter} component={vertical ? 'div' : 'a'}>
-        <Button onClick={onClick} className={getFilterClass(filter)}>
+        <Button onClick={handleClick(filter)} className={getFilterClass(filter)}>
           {useI18n ? t(`filter-by-${filter}`) : filter}
         </Button>
       </Typography>
     ));
     return vertical ? components : components.reduce((prev, curr) => [prev, ' - ', curr]);
-  }, [t, getFilterClass]);
+  }, [t, getFilterClass, useI18n, handleClick, values, vertical]);
 
   return (
     <div>

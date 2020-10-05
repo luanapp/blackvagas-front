@@ -1,5 +1,8 @@
-import {
-  apiClient
-} from '../apiClient';
+import { apiClient } from '../apiClient';
 
-export const getJobs = async () => apiClient.get('/jobs');
+export const getJobs = async (key, filters) =>
+  apiClient.get('/jobs', {
+    params: {
+      ...filters,
+    },
+  });

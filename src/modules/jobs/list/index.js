@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { Grid, Hidden } from '@material-ui/core';
@@ -25,9 +25,18 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const initialFilters = {
+  order: 'date',
+};
+
 const JobList = () => {
   const classes = useStyles();
   const [t] = useTranslation('jobs');
+  const [filters, setFilters] = useState(initialFilters);
+
+  const onFilterChange = newFilters => {
+    setFilters({ ...filters, ...newFilters });
+  };
 
   return (
     <div>
@@ -38,11 +47,11 @@ const JobList = () => {
         <Grid container item spacing={3}>
           <Hidden xsDown>
             <Grid item sm={4}>
-              <FiltersSection />
+              <FiltersSection filters={filters} onChange={onFilterChange} />
             </Grid>
           </Hidden>
           <Grid item sm={8} xs={12}>
-            <Listsection />
+            <Listsection filters={filters} />
           </Grid>
         </Grid>
       </Grid>
