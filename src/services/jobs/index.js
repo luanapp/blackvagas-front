@@ -6,3 +6,6 @@ export const getJobs = async (key, filters) =>
       ...filters,
     },
   });
+
+export const getJobLocations = async key => apiClient.get('/jobs/locations');
+export const getJobTypes = async key => apiClient.get('/jobs/types');

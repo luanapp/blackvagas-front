@@ -1,4 +1,11 @@
 {
-  "filter-by-relevance": "relevância",
-  "filter-by-date": "data"
+  "filter-by": {
+    "relevance": "relevância",
+    "date": "data",
+    "fullTime": "Tempo Integral",
+    "internship": "Estágio",
+    "clt": "Efetivo/CLT",
+    "freelancer": "Freelancer",
+    "partTime": "Meio Período"
+  }
 }

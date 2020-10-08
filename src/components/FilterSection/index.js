@@ -32,10 +32,10 @@ const FiltersSection = ({ title, filters, values, onClick, useI18n, vertical }) 
   const handleClick = useCallback(filter => () => onClick(filter), [onClick]);
 
   const filterComponents = useMemo(() => {
-    const components = values.map(filter => (
-      <Typography key={filter} component={vertical ? 'div' : 'a'}>
-        <Button onClick={handleClick(filter)} className={getFilterClass(filter)}>
-          {useI18n ? t(`filter-by-${filter}`) : filter}
+    const components = values.map(({ key, value }) => (
+      <Typography key={value} component={vertical ? 'div' : 'a'}>
+        <Button onClick={handleClick(key)} className={getFilterClass(key)}>
+          {useI18n ? t(`filter-by.${value}`) : value}
         </Button>
       </Typography>
     ));

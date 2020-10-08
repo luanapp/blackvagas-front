@@ -71,6 +71,24 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/jobs/locations',
+    methods: [
+      {
+        type: 'get',
+        code: 200,
+      },
+    ],
+  },
+  {
+    path: '/jobs/types',
+    methods: [
+      {
+        type: 'get',
+        code: 200,
+      },
+    ],
+  },
 ];
 
 app.routes(routes).listen(process.env.PORT || 3050);

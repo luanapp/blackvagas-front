@@ -1,0 +1,22 @@
+{
+  "page": 0,
+  "limit": 3,
+  "size": 11,
+  "results": [
+    {
+      "id": "1",
+      "state": "MG",
+      "city": "Belo Horizonte"
+    },
+    {
+      "id": "2",
+      "state": "MG",
+      "city": "Nova Lima"
+    },
+    {
+      "id": "3",
+      "state": "MG",
+      "city": "Uberlândia"
+    }
+  ]
+}
