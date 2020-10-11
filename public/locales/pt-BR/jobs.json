@@ -16,6 +16,10 @@
   "filter-section": {
     "order-by": "Ordenar por",
     "filter-place": "Local",
-    "job-type": "Tipo de Vaga"
+    "job-type": "Tipo de Vaga",
+    "error": {
+      "place": "Erro ao obter locais",
+      "type": "Error ao obter tipos"
+    }
   }
 }

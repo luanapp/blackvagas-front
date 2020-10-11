@@ -5,14 +5,14 @@ import { Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { cond, pathOr, equals, T, always } from 'ramda';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   selectedFilter: {
     color: '#AF1F00',
   },
   unselectedFilter: {
     fontWeight: 'normal',
   },
-}));
+});
 
 const Fields = ({ values, filters, onClick, useI18n, vertical }) => {
   const classes = useStyles();
@@ -35,7 +35,7 @@ const Fields = ({ values, filters, onClick, useI18n, vertical }) => {
       </Button>
     </Typography>
   ));
-  return vertical ? components : components.reduce((prev, curr) => [prev, ' - ', curr], '');
+  return vertical ? components : components.reduce((prev, curr) => [prev, ' - ', curr]);
 };
 
 Fields.propTypes = {

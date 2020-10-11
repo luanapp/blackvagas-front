@@ -16,7 +16,7 @@ export const FiltersPlaceHolder = () => (
 const FiltersSection = ({ title, filters, values, onClick, useI18n, vertical }) => {
   const filterComponents = useMemo(
     () => <Fields filters={filters} onClick={onClick} useI18n={useI18n} values={values} vertical={vertical} />,
-    [useI18n, onClick, values, vertical]
+    [useI18n, onClick, values, vertical, filters]
   );
   return (
     <div>

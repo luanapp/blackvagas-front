@@ -61,7 +61,7 @@ const FiltersSection = ({ filters, onChange }) => {
         />
       </div>
       <div className={classes.filterContainer}>
-        {isLocError && <Alert severity="error">Olar</Alert>}
+        {isLocError && <Alert severity="error">{t('filter-section.error.place')}</Alert>}
         {isFetchingMore && <FiltersPlaceHolder />}
         {!isFetchingMore && locData && (
           <>
@@ -80,7 +80,7 @@ const FiltersSection = ({ filters, onChange }) => {
         {canFetchMore && <Button onClick={fetchMore}>Mais</Button>}
       </div>
       <div className={classes.filterContainer}>
-        {isTypesError && <Alert severity="error"></Alert>}
+        {isTypesError && <Alert severity="error">{t('filter-section.error.type')}</Alert>}
         {isTypesLoading && <FiltersPlaceHolder />}
         {!isTypesLoading && jobTypes && (
           <FilterSection
