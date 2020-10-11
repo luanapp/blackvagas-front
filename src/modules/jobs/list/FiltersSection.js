@@ -1,12 +1,13 @@
 import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { Paper } from '@material-ui/core';
+import { Button, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { getJobLocations, getJobTypes } from '@services/jobs';
-import FilterSection from '../../../components/FilterSection';
 import { useInfiniteQuery, useQuery } from 'react-query';
 import { pathOr } from 'ramda';
+import { Alert } from '@material-ui/lab';
+import FilterSection, { FiltersPlaceHolder, Fields, Header } from '../../../components/FilterSection';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,20 +32,22 @@ const FiltersSection = ({ filters, onChange }) => {
   const classes = useStyles();
   const [t] = useTranslation('jobs');
   const onFilterChange = useCallback(filters => onChange(filters), [onChange]);
+  const { data: locData, isError: isLocError, isFetchingMore, fetchMore, canFetchMore } = useInfiniteQuery(
+    'jobsLocation',
+    getJobLocations,
+    {
+      getFetchMore: last => last.data.offset < last.data.size,
+      retry: false,
+    }
+  );
   const { data: typesData, isError: isTypesError, isLoading: isTypesLoading } = useQuery('jobsTypes', getJobTypes, {
-    retry: false,
-  });
-  const { data: locData, isError: isLocError, isLoading: isLocLoading } = useQuery('jobsLocation', getJobLocations, {
     retry: false,
   });
   const jobTypes = useMemo(() => pathOr([], ['data'], typesData).map(type => ({ key: type, value: type })), [
     typesData,
   ]);
-  const places = useMemo(
-    () =>
-      pathOr([], ['data', 'results'], locData).map(({ id, state, city }) => ({ key: id, value: `${city}, ${state}` })),
-    [locData]
-  );
+  const getPlaces = data =>
+    pathOr([], ['data', 'results'], data).map(({ id, state, city }) => ({ key: id, value: `${city}, ${state}` }));
 
   return (
     <Paper className={classes.root}>
@@ -58,23 +61,37 @@ const FiltersSection = ({ filters, onChange }) => {
         />
       </div>
       <div className={classes.filterContainer}>
-        <FilterSection
-          title={t('filter-section.filter-place')}
-          filters={filters}
-          values={places}
-          vertical
-          onClick={value => onFilterChange({ location: value })}
-        />
+        {isLocError && <Alert severity="error">Olar</Alert>}
+        {isFetchingMore && <FiltersPlaceHolder />}
+        {!isFetchingMore && locData && (
+          <>
+            <Header title={t('filter-section.filter-place')} />
+            {locData.map((data, i) => (
+              <Fields
+                key={i}
+                filters={filters}
+                values={getPlaces(data)}
+                vertical
+                onClick={value => onFilterChange({ location: value })}
+              />
+            ))}
+          </>
+        )}
+        {canFetchMore && <Button onClick={fetchMore}>Mais</Button>}
       </div>
       <div className={classes.filterContainer}>
-        <FilterSection
-          title={t('filter-section.job-type')}
-          filters={filters}
-          values={jobTypes}
-          vertical
-          useI18n
-          onClick={value => onFilterChange({ type: value })}
-        />
+        {isTypesError && <Alert severity="error"></Alert>}
+        {isTypesLoading && <FiltersPlaceHolder />}
+        {!isTypesLoading && jobTypes && (
+          <FilterSection
+            title={t('filter-section.job-type')}
+            filters={filters}
+            values={jobTypes}
+            vertical
+            useI18n
+            onClick={value => onFilterChange({ type: value })}
+          />
+        )}
       </div>
     </Paper>
   );

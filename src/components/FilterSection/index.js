@@ -1,71 +1,40 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
-import { Button, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
-import { cond, pathOr, equals, T, always } from 'ramda';
+import { Typography } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
+import Fields from './Fields';
+import Header from './Header';
 
-const useStyles = makeStyles(theme => ({
-  header: {
-    marginBottom: theme.spacing(1),
-  },
-  selectedFilter: {
-    color: '#AF1F00',
-  },
-  unselectedFilter: {
-    fontWeight: 'normal',
-  },
-}));
+export const FiltersPlaceHolder = () => (
+  <Skeleton variant="rect" component={FiltersSection}>
+    <Skeleton component={Typography} />
+    <Skeleton component={Typography} />
+    <Skeleton component={Typography} />
+  </Skeleton>
+);
 
 const FiltersSection = ({ title, filters, values, onClick, useI18n, vertical }) => {
-  const classes = useStyles();
-  const [t] = useTranslation('filters');
-  const getFilterClass = useCallback(
-    cond([
-      [equals(pathOr('', ['order'], filters)), always(classes.selectedFilter)],
-      [equals(pathOr('', ['location'], filters)), always(classes.selectedFilter)],
-      [equals(pathOr('', ['type'], filters)), always(classes.selectedFilter)],
-      [T, always(classes.unselectedFilter)],
-    ]),
-    [filters]
+  const filterComponents = useMemo(
+    () => <Fields filters={filters} onClick={onClick} useI18n={useI18n} values={values} vertical={vertical} />,
+    [useI18n, onClick, values, vertical]
   );
-  const handleClick = useCallback(filter => () => onClick(filter), [onClick]);
-
-  const filterComponents = useMemo(() => {
-    const components = values.map(({ key, value }) => (
-      <Typography key={value} component={vertical ? 'div' : 'a'}>
-        <Button onClick={handleClick(key)} className={getFilterClass(key)}>
-          {useI18n ? t(`filter-by.${value}`) : value}
-        </Button>
-      </Typography>
-    ));
-    return vertical ? components : components.reduce((prev, curr) => [prev, ' - ', curr]);
-  }, [t, getFilterClass, useI18n, handleClick, values, vertical]);
-
   return (
     <div>
-      <div className={classes.header}>
-        <Typography variant="h6" component="p">
-          {title}
-        </Typography>
-      </div>
+      <Header title={title} />
       <div>{filterComponents}</div>
     </div>
   );
 };
 
 FiltersSection.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   values: PropTypes.array,
   onClick: PropTypes.func,
-  useI18n: PropTypes.bool,
-  vertical: PropTypes.bool,
-  filters: PropTypes.shape({
-    order: PropTypes.string,
-  }),
+  filters: PropTypes.object,
 };
 
 FiltersSection.defaultProps = {
+  title: '',
   filters: {
     order: 'date',
   },
@@ -75,4 +44,6 @@ FiltersSection.defaultProps = {
   vertical: false,
 };
 
+export { default as Fields } from './Fields';
+export { default as Header } from './Header';
 export default FiltersSection;
