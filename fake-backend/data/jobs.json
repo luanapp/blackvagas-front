@@ -11,6 +11,7 @@
         "city": "Belo Horizonte",
         "state": "MG"
       },
+      "isFavorite": true,
       "montlyIncome": 823,
       "creationDate": "2020-06-21T18:20:02Z"
     },

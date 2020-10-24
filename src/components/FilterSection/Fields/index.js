@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { cond, pathOr, equals, T, always } from 'ramda';
+import { cond, pathOr, equals, T, always, isEmpty } from 'ramda';
 
 const useStyles = makeStyles({
   selectedFilter: {
@@ -35,7 +35,7 @@ const Fields = ({ values, filters, onClick, useI18n, vertical }) => {
       </Button>
     </Typography>
   ));
-  return vertical ? components : components.reduce((prev, curr) => [prev, ' - ', curr]);
+  return isEmpty(components) || vertical ? components : components.reduce((prev, curr) => [prev, ' - ', curr]);
 };
 
 Fields.propTypes = {

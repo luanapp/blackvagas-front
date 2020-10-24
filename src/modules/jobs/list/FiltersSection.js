@@ -63,7 +63,7 @@ const FiltersSection = ({ filters, onChange }) => {
       <div className={classes.filterContainer}>
         {isLocError && <Alert severity="error">{t('filter-section.error.place')}</Alert>}
         {isFetchingMore && <FiltersPlaceHolder />}
-        {!isFetchingMore && locData && (
+        {!isFetchingMore && locData && !isLocError && (
           <>
             <Header title={t('filter-section.filter-place')} />
             {locData.map((data, i) => (

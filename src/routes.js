@@ -66,7 +66,7 @@ const routes = [
     exact: true,
     component: JobsPage,
     visible: true,
-    auth: true,
+    auth: false,
   },
   {
     id: 8,

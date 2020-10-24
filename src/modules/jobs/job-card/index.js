@@ -38,6 +38,7 @@ const JobCard = ({
     title,
     company,
     location: { city, state },
+    isFavorite,
     montlyIncome,
     creationDate,
   },
@@ -45,7 +46,7 @@ const JobCard = ({
   const classes = useStyles();
   const [t] = useTranslation('jobs');
   return (
-    <JobCardContainer title={title} actionSection={<CardAction label={t(jobI18n('apply'))} />}>
+    <JobCardContainer title={title} isFavorite={isFavorite} actionSection={<CardAction label={t(jobI18n('apply'))} />}>
       <Typography variant="body2" component="p" className={classes.upperLabel}>
         {company}
       </Typography>
@@ -62,6 +63,7 @@ JobCard.propTypes = {
   job: PropTypes.shape({
     title: PropTypes.string.isRequired,
     company: PropTypes.string.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
     location: PropTypes.shape({
       city: PropTypes.string.isRequired,
       state: PropTypes.string.isRequired,

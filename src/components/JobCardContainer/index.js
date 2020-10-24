@@ -12,6 +12,9 @@ const useStyles = makeStyles(theme => ({
       padding: theme.spacing(2, 4),
     },
   },
+  favorite: {
+    color: theme.palette.background.default
+  },
   content: {
     paddingTop: 0,
   },
@@ -22,7 +25,9 @@ const JobCardContainer = ({ title, children, actionSection, isFavorite }) => {
   const classes = useStyles();
   const [t] = useTranslation('jobs');
   const headerAriaLabel = useMemo(() => t(`${i18nKey}.job-card-container`), [t]);
-  const favorite = useMemo(() => (isFavorite ? <FavoriteBorderIcon /> : <FavoriteIcon />), [isFavorite]);
+  const favorite = useMemo(() => {
+    return isFavorite ? <FavoriteIcon className={classes.favorite} /> : <FavoriteBorderIcon className={classes.favorite} />
+  }, [isFavorite]);
 
   return (
     <Card elevation={3} className={classes.root}>
