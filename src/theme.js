@@ -80,5 +80,5 @@ const theme = createMuiTheme({
 });
 
 export default responsiveFontSizes(theme, {
-  breakpoints: ['xs', 'sm', 'md', 'lg'],
+  breakpoints: ['xs', 'xl', 'sm', 'md', 'lg'],
 });

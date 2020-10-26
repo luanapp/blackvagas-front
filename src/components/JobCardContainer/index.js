@@ -26,7 +26,8 @@ const JobCardContainer = ({ title, children, actionSection, isFavorite }) => {
   const [t] = useTranslation('jobs');
   const headerAriaLabel = useMemo(() => t(`${i18nKey}.job-card-container`), [t]);
   const favorite = useMemo(() => {
-    return isFavorite ? <FavoriteIcon className={classes.favorite} /> : <FavoriteBorderIcon className={classes.favorite} />
+    return isFavorite ? <FavoriteIcon fontSize="large" className={classes.favorite} /> :
+    <FavoriteBorderIcon fontSize="large" className={classes.favorite} />
   }, [isFavorite]);
 
   return (
