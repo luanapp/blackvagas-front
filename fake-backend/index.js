@@ -90,10 +90,10 @@ const routes = [
     ],
   },
   {
-    path: '/jobs/f9af217f-88dc-4992-b734-ca690658afa5/toggleFavoriteJob/476f0bdd-84e0-4de1-a61f-f4bc730dd8d0',
+    path: '/jobs/:jobId/toggleFavoriteJob/:userId',
     methods: [
       {
-        type: 'get',
+        type: 'put',
         code: 204,
       },
     ],
