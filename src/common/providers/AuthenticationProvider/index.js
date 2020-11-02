@@ -7,9 +7,11 @@ export const AuthenticationContext = createContext({
 });
 
 export default function AuthenticationProvider({ children }) {
+  const currentJwt = localStorage.getItem(AUTHENTICATION_KEY);
+
   const data = {
-    currentUser: useMemo(() => localStorage.getItem(AUTHENTICATION_KEY), []),
-    isAuthenticated: useMemo(() => !!localStorage.getItem(AUTHENTICATION_KEY), []),
+    currentJwt,
+    isAuthenticated: useMemo(() => !!currentJwt, [currentJwt]),
   };
 
   return <AuthenticationContext.Provider value={data}>{children}</AuthenticationContext.Provider>;

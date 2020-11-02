@@ -90,11 +90,11 @@ const routes = [
     ],
   },
   {
-    path: '/user/:userId/toggleFavoriteJob/:jobId',
+    path: '/jobs/f9af217f-88dc-4992-b734-ca690658afa5/toggleFavoriteJob/476f0bdd-84e0-4de1-a61f-f4bc730dd8d0',
     methods: [
       {
         type: 'get',
-        code: 200,
+        code: 204,
       },
     ],
   },
