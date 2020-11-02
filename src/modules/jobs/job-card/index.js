@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { JobCardContainer, RelativeDateLabel, MoneyLabel } from '@components';
@@ -6,6 +6,8 @@ import { Button, Typography } from '@material-ui/core';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { makeStyles } from '@material-ui/styles';
 import { Skeleton } from '@material-ui/lab';
+import { useAuthentication } from '@hooks';
+import { toggleFavorite } from '@services/user';
 
 const useStyles = makeStyles(theme => ({
   upperLabel: {
@@ -35,6 +37,7 @@ const i18nPrexix = 'job-card';
 const jobI18n = key => `${i18nPrexix}.${key}`;
 const JobCard = ({
   job: {
+    id,
     title,
     company,
     location: { city, state },
@@ -45,8 +48,21 @@ const JobCard = ({
 }) => {
   const classes = useStyles();
   const [t] = useTranslation('jobs');
+  const { currentUser } = useAuthentication();
+  const onFavoriteClick = useCallback(
+    jobId => () => {
+      toggleFavorite('', { jobId, userId: currentUser });
+    },
+    [currentUser]
+  );
+
   return (
-    <JobCardContainer title={title} isFavorite={isFavorite} actionSection={<CardAction label={t(jobI18n('apply'))} />}>
+    <JobCardContainer
+      title={title}
+      isFavorite={isFavorite}
+      onFavoriteClick={onFavoriteClick(id)}
+      actionSection={<CardAction label={t(jobI18n('apply'))} />}
+    >
       <Typography variant="body2" component="p" className={classes.upperLabel}>
         {company}
       </Typography>
@@ -61,16 +77,20 @@ const JobCard = ({
 
 JobCard.propTypes = {
   job: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    company: PropTypes.string.isRequired,
-    isFavorite: PropTypes.bool.isRequired,
+    title: PropTypes.string,
+    company: PropTypes.string,
+    isFavorite: PropTypes.bool,
     location: PropTypes.shape({
-      city: PropTypes.string.isRequired,
-      state: PropTypes.string.isRequired,
-    }).isRequired,
-    montlyIncome: PropTypes.number.isRequired,
-    creationDate: PropTypes.string.isRequired,
-  }).isRequired,
+      city: PropTypes.string,
+      state: PropTypes.string,
+    }),
+    montlyIncome: PropTypes.number,
+    creationDate: PropTypes.string,
+  }),
+};
+
+JobCard.defaultProps = {
+  job: {},
 };
 
 export default JobCard;

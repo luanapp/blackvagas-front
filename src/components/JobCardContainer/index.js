@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   favorite: {
-    color: theme.palette.background.default
+    color: theme.palette.background.default,
   },
   content: {
     paddingTop: 0,
@@ -21,18 +21,28 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const i18nKey = 'job-card-container';
-const JobCardContainer = ({ title, children, actionSection, isFavorite }) => {
+const JobCardContainer = ({ title, children, actionSection, isFavorite, onFavoriteClick }) => {
   const classes = useStyles();
   const [t] = useTranslation('jobs');
   const headerAriaLabel = useMemo(() => t(`${i18nKey}.job-card-container`), [t]);
   const favorite = useMemo(() => {
-    return isFavorite ? <FavoriteIcon fontSize="large" className={classes.favorite} /> :
-    <FavoriteBorderIcon fontSize="large" className={classes.favorite} />
-  }, [isFavorite]);
+    return isFavorite ? (
+      <FavoriteIcon fontSize="large" className={classes.favorite} />
+    ) : (
+      <FavoriteBorderIcon fontSize="large" className={classes.favorite} />
+    );
+  }, [isFavorite, classes.favorite]);
 
   return (
     <Card elevation={3} className={classes.root}>
-      <CardHeader title={title} action={<IconButton aria-label={headerAriaLabel}>{favorite}</IconButton>} />
+      <CardHeader
+        title={title}
+        action={
+          <IconButton onClick={onFavoriteClick} aria-label={headerAriaLabel}>
+            {favorite}
+          </IconButton>
+        }
+      />
       <CardContent className={classes.content}>{children}</CardContent>
       {actionSection && <CardActions>{actionSection}</CardActions>}
     </Card>
@@ -43,12 +53,14 @@ JobCardContainer.propTypes = {
   actionSection: PropTypes.element,
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.array]).isRequired,
   isFavorite: PropTypes.bool,
+  onFavoriteClick: PropTypes.func,
   title: PropTypes.string,
 };
 
 JobCardContainer.defaultProps = {
   actionSection: null,
   isFavorite: false,
+  onFavoriteClick: () => {},
   title: '',
 };
 

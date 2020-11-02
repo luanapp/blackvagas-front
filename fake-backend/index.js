@@ -31,7 +31,7 @@ const routes = [
     methods: [
       {
         type: 'post',
-        code: 400,
+        code: 200,
       },
     ],
   },
@@ -82,6 +82,15 @@ const routes = [
   },
   {
     path: '/jobs/types',
+    methods: [
+      {
+        type: 'get',
+        code: 200,
+      },
+    ],
+  },
+  {
+    path: '/user/:userId/toggleFavoriteJob/:jobId',
     methods: [
       {
         type: 'get',

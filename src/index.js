@@ -5,17 +5,20 @@ import * as serviceWorker from './serviceWorker';
 import './i18n';
 import App from './App';
 import NotificationProvider from '@providers/NotificationProvider';
+import AuthenticationProvider from '@providers/AuthenticationProvider';
 import Backdrop from '@components/Backdrop';
 
 const reactQueryConfig = { suspense: true };
 ReactDOM.render(
   <StrictMode>
     <ReactQueryConfigProvider config={reactQueryConfig}>
-      <NotificationProvider>
-        <Suspense fallback={<Backdrop />}>
-          <App />
-        </Suspense>
-      </NotificationProvider>
+      <AuthenticationProvider>
+        <NotificationProvider>
+          <Suspense fallback={<Backdrop />}>
+            <App />
+          </Suspense>
+        </NotificationProvider>
+      </AuthenticationProvider>
     </ReactQueryConfigProvider>
   </StrictMode>,
   document.getElementById('root')

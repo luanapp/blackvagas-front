@@ -1,11 +1,5 @@
-import { BehaviorSubject } from 'rxjs';
+import { AUTHENTICATION_KEY } from '@constants/authentication';
 import { apiClient } from '../apiClient';
-
-const AUTHENTICATION_KEY = 'currentUser';
-const currentUserSubject = new BehaviorSubject(localStorage.getItem(AUTHENTICATION_KEY));
-
-const isAuthenticated = !!currentUserSubject.value;
-const authenticatedUser = currentUserSubject.value;
 
 const login = async ({ email, password }) => {
   const { data, status } = await apiClient.post('/login', {
@@ -15,7 +9,6 @@ const login = async ({ email, password }) => {
 
   if (status === 200) {
     localStorage.setItem(AUTHENTICATION_KEY, data.jwt);
-    await currentUserSubject.next(data.jwt);
   }
 
   return data;
@@ -50,7 +43,6 @@ const checkChangePasswdToken = async ({ token }) => {
 
 const logout = async () => {
   localStorage.removeItem(AUTHENTICATION_KEY);
-  await currentUserSubject.next(null);
 };
 
-export { isAuthenticated, authenticatedUser, login, logout, resetPassword, changePassword, checkChangePasswdToken };
+export { login, logout, resetPassword, changePassword, checkChangePasswdToken };

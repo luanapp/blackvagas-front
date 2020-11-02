@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import { pathOr, isEmpty } from 'ramda';
 import { makeStyles } from '@material-ui/core/styles';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import { getJobs } from '../../../services/jobs';
+import { getJobs } from '@services/jobs';
 import JobCard, { JobCardPlaceHolder } from '../job-card';
 
 const useStyles = makeStyles(theme => ({
