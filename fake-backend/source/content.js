@@ -64,7 +64,7 @@ function createSearchableContent(method, req, content) {
  */
 function createPaginatedContent(method, req, content, options) {
   const {
-    query: { page: current = 0, size = 10 },
+    query: { page: current = 0, size = 3 },
   } = req;
 
   const { count, data, empty, first, last, page, pages, total } = getPaginationProperties(options);
@@ -78,7 +78,10 @@ function createPaginatedContent(method, req, content, options) {
   const offset = currentPage * currentSize;
 
   return {
-    [data]: content.slice(offset, offset + currentSize),
+    offset,
+    limit: size,
+    size: totalElements,
+    results: content.slice(offset, offset + currentSize),
     [empty]: content.slice(offset, offset + currentSize).length === 0,
     [first]: currentPage === 0,
     [last]: currentPage >= totalPages - 1,

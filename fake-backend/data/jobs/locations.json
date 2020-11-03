@@ -1,22 +1,27 @@
-{
-  "offset": 0,
-  "limit": 3,
-  "size": 10,
-  "results": [
-    {
-      "id": "1",
-      "state": "MG",
-      "city": "Belo Horizonte"
-    },
-    {
-      "id": "2",
-      "state": "MG",
-      "city": "Nova Lima"
-    },
-    {
-      "id": "3",
-      "state": "MG",
-      "city": "Uberlândia"
-    }
-  ]
-}
+[
+  {
+    "id": "1",
+    "state": "MG",
+    "city": "Belo Horizonte"
+  },
+  {
+    "id": "2",
+    "state": "MG",
+    "city": "Nova Lima"
+  },
+  {
+    "id": "3",
+    "state": "MG",
+    "city": "Uberlândia"
+  },
+  {
+    "id": "4",
+    "state": "SP",
+    "city": "São Paulo"
+  },
+  {
+    "id": "5",
+    "state": "RJ",
+    "city": "Rio de Janeiro"
+  }
+]

@@ -77,6 +77,7 @@ const routes = [
       {
         type: 'get',
         code: 200,
+        paginate: true,
       },
     ],
   },
