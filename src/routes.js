@@ -1,16 +1,16 @@
 import Void from './Void';
-import Landing from './modules/landing';
-import Login from './modules/login';
+import LandingPage from './pages/landing';
+import LoginPage from './pages/login';
 import ResetPassword from './modules/password-reset';
 import NewPassword from './modules/new-password';
-import JobsPage from './pages/JobsPage';
+import JobsPage from './pages/jobs';
 
 const routes = [
   {
     id: 1,
     order: 0,
     path: '/',
-    component: Landing,
+    component: LandingPage,
     exact: true,
     visible: false,
     auth: false,
@@ -30,7 +30,7 @@ const routes = [
     path: '/login',
     label: 'enter',
     exact: true,
-    component: Login,
+    component: LoginPage,
     visible: true,
     auth: false,
   },

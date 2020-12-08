@@ -1,12 +1,6 @@
 import React from 'react';
 import JobList from '@modules/jobs/list';
 
-const JobsPage = () => {
-  return (
-    <div>
-      <JobList />
-    </div>
-  );
-};
+const JobsPage = () => <JobList />;
 
 export default JobsPage;
