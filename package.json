@@ -8,6 +8,7 @@
   },
   "license": "MIT",
   "scripts": {
+    "commit": "git cz",
     "start": "env-cmd -f .env react-app-rewired start",
     "build": "env-cmd -f .env.prod react-app-rewired build",
     "test": "env-cmd -f .env react-app-rewired test",
@@ -22,6 +23,7 @@
     "clsx": "^1.1.1",
     "date-fns": "^2.16.1",
     "env-cmd": "^10.1.0",
+    "eslint": "^7.32.0",
     "formik": "^2.1.5",
     "formik-material-ui": "^3.0.0-alpha.0",
     "formik-material-ui-pickers": "^0.0.11",
